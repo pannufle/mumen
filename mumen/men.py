@@ -71,8 +71,11 @@ def store(men: list, path: str):
         param men: men list structure to save.
         param path: path to the file where to store the MEN.
     """
-    # TODO implement
-    return None
+    with open(path, "w") as f:
+        for entry in men:
+            f.write(
+                f'{entry["word_L"]} {entry["word_R"]} {entry["similarity"]}\n'
+                )
 
 
 if __name__ == "__main__":
