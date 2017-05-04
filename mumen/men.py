@@ -8,7 +8,33 @@ import zipfile
 import os
 
 
-def downlaod_men():
+def parse_men_row(row: str) -> dict:
+    """Function to parse a MEN row
+    Args:
+        row: input row in form of "WORD_L WORD_R SIMILARITY"
+    Returns:
+        a dictionary in the form of:
+        {
+            "word_L": str,
+            "word_R": str,
+            "similarity": float
+        }
+    """
+    men_row = row.strip().split()
+    return {
+        "word_L": men_row[0],
+        "word_R": men_row[1],
+        "similarity": float(men_row[2])
+    }
+
+
+def encode_men_row(entry: dict) -> str:
+    return '{} {} {}'.format(entry["word_L"],
+                             entry["word_R"],
+                             entry["similarity"])
+
+
+def downlaod_men() -> list:
     """Download the last version of the MEN data-set from:
     https://staff.fnwi.uva.nl/e.bruni/resources
 
@@ -26,17 +52,10 @@ def downlaod_men():
                 f.write(chunk)
         with zipfile.ZipFile(".tmp/MEN.zip", "r") as zip_ref:
             zip_ref.extractall(".tmp/")
-        men = []
+
         with open(".tmp/MEN/MEN_dataset_natural_form_full", "r") as f:
             for men_row in f:
-                men_row = men_row.strip().split()
-                men_entry = {
-                    "word_L": men_row[0],
-                    "word_R": men_row[1],
-                    "similarity": float(men_row[2])
-                }
-                men.append(men_entry)
-        return men
+                yield(parse_men_row(men_row))
     else:
         raise Exception("Download failed ({}) : {}".format(reponse.status_code,
                                                            reponse.text))
@@ -51,17 +70,9 @@ def load(path: str) -> list:
     Returns:
         the MEN Structure.
     """
-    men = []
     with open(path, "r") as f:
         for men_row in f:
-            men_row = men_row.strip().split()
-            men_entry = {
-                "word_L": men_row[0],
-                "word_R": men_row[1],
-                "similarity": float(men_row[2])
-            }
-            men.append(men_entry)
-    return men
+            yield parse_men_row(men_row)
 
 
 def store(men: list, path: str):
@@ -73,10 +84,10 @@ def store(men: list, path: str):
     """
     with open(path, "w") as f:
         for entry in men:
-            f.write(
-                f'{entry["word_L"]} {entry["word_R"]} {entry["similarity"]}\n'
-                )
+            f.write(f'{encode_men_row(entry)}\n')
 
 
 if __name__ == "__main__":
-    print(downlaod_men())
+    """Simple demo to test MEN functionality"""
+    for entry in downlaod_men():
+        print(entry)
