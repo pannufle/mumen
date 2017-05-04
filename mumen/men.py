@@ -1,5 +1,6 @@
 #! /usr/bin/python3
-"""MEN Utilities
+"""MEN Utilities.
+
 This module contains many utilities to load, creante and store MEN Files:
 https://staff.fnwi.uva.nl/e.bruni/MEN.
 """
@@ -9,7 +10,8 @@ import requests
 
 
 def parse_men_row(row):
-    """Function to parse a MEN row
+    """Function to parse a MEN row.
+
     Args:
         row: input row in form of "WORD_L WORD_R SIMILARITY"
     Returns:
@@ -29,7 +31,8 @@ def parse_men_row(row):
 
 
 def encode_men_row(entry):
-    """Function to encode an MEN entry to string
+    """Function to encode an MEN entry to .
+
     Args:
         entry: MEN entry in form of dictionary
     Returns:
@@ -41,8 +44,9 @@ def encode_men_row(entry):
 
 
 def downlaod_men():
-    """Download the last version of the MEN data-set from:
-    https://staff.fnwi.uva.nl/e.bruni/resources
+    """Download the last version of the MEN data-set.
+
+    Base url:  https://staff.fnwi.uva.nl/e.bruni/resources.
 
     Returns:
         The MEN structure
@@ -69,7 +73,7 @@ def downlaod_men():
 
 
 def load(path):
-    """Function to load a MEN FILE
+    """Function to load a MEN FILE.
 
     Args:
         path: path to the MEN file to load.
