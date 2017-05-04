@@ -5,7 +5,7 @@ Module to translate both words and MEN entries.
 from nltk.corpus import wordnet as wn
 
 
-def translate_word(word: str, lng: str="jpn") -> str:
+def translate_word(word, lng="jpn"):
     """Function to translate an English word using WordNet.
     Args:
         word: English word to translate
@@ -16,11 +16,12 @@ def translate_word(word: str, lng: str="jpn") -> str:
     syns = wn.synsets(word)
     if len(syns) == 0:
         raise Exception("No synset found for {}".format(word))
-    syns = syns[0]
-    lemmas = syns.lemma_names(lng)
+    lemmas = set()
+    for syn in syns:
+        lemmas |= set(syn.lemma_names(lng))
     if len(lemmas) == 0:
         raise Exception("No translation found for {} in {}".format(word, lng))
-    return lemmas[0]
+    return lemmas
 
 
 if __name__ == "__main__":
