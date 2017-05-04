@@ -19,7 +19,7 @@ setup(
     license='MIT',
     platforms=["any"],
     packages=['mumen'],
-    # install_requires=['scipy', 'gensim'],
+    install_requires=['requests'],
     # Add test suite
     # Add entry point
 )
