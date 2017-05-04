@@ -17,12 +17,12 @@ def translate_word(word, lng="jpn"):
 
     """
     syns = wn.synsets(word)
-    if len(syns) == 0:
+    if not syns:
         raise Exception("No synset found for {}".format(word))
     lemmas = set()
     for syn in syns:
         lemmas |= set(syn.lemma_names(lng))
-    if len(lemmas) == 0:
+    if not lemmas:
         raise Exception("No translation found for {} in {}".format(word, lng))
     return lemmas
 
