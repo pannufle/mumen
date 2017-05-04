@@ -90,4 +90,4 @@ ENV/
 
 # Temproary files and directory
 .tmp
-data/MEN_*
+data/MEN/*
