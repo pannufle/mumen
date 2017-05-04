@@ -48,8 +48,8 @@ def downlaod_men():
         The MEN structure
     """
     reponse = requests.get(
-                        "https://staff.fnwi.uva.nl/e.bruni/resources/MEN.zip",
-                        stream=True)
+        "https://staff.fnwi.uva.nl/e.bruni/resources/MEN.zip",
+        stream=True)
     if reponse.status_code == 200:
         if not os.path.isdir(".tmp/"):
             os.mkdir(".tmp")
