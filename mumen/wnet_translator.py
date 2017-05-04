@@ -7,13 +7,14 @@ from nltk.corpus import wordnet as wn
 
 
 def translate_word(word, lng="jpn"):
-    """Function to translate an English word using WordNet.
+    """Translate an English word using WordNet.
 
     Args:
         word: English word to translate
         lng: target language
     Returns:
         Translated word
+
     """
     syns = wn.synsets(word)
     if len(syns) == 0:

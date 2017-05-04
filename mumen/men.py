@@ -10,7 +10,7 @@ import requests
 
 
 def parse_men_row(row):
-    """Function to parse a MEN row.
+    """Parse a MEN row.
 
     Args:
         row: input row in form of "WORD_L WORD_R SIMILARITY"
@@ -21,6 +21,7 @@ def parse_men_row(row):
             "word_R": str,
             "similarity": float
         }
+
     """
     men_row = row.strip().split()
     return {
@@ -31,12 +32,13 @@ def parse_men_row(row):
 
 
 def encode_men_row(entry):
-    """Function to encode an MEN entry to .
+    """Encode an MEN entry to .
 
     Args:
         entry: MEN entry in form of dictionary
     Returns:
         MEN entry string
+
     """
     return '{} {} {}'.format(entry["word_L"],
                              entry["word_R"],
@@ -50,6 +52,7 @@ def downlaod_men():
 
     Returns:
         The MEN structure
+
     """
     reponse = requests.get(
         "https://staff.fnwi.uva.nl/e.bruni/resources/MEN.zip",
@@ -73,13 +76,14 @@ def downlaod_men():
 
 
 def load(path):
-    """Function to load a MEN FILE.
+    """Load a MEN FILE.
 
     Args:
         path: path to the MEN file to load.
 
     Returns:
         the MEN Structure.
+
     """
     with open(path, "r") as men_file:
         for men_row in men_file:
@@ -87,7 +91,7 @@ def load(path):
 
 
 def store(men, path):
-    """Function to sture a MEN list to file.
+    """Store a MEN list to file.
 
     Args:
         param men: men list structure to save.
