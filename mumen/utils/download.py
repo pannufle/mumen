@@ -25,4 +25,5 @@ if __name__ == "__main__":
         os.remove("MEN.zip")
         print("Done.")
     else:
-        print("!!! Download failed with code {} !!!".format(RESPONSE.status_code))
+        print("!!! Download failed with code {} !!!".format(
+            RESPONSE.status_code))
