@@ -27,6 +27,25 @@ def translate_word(word, lng="jpn"):
     return lemmas
 
 
+def translate_men(men, lng="jpn"):
+    """Translate a MEN dataset using WordNet.
+
+    Args:
+        men: An english MEN dataset to translate
+        lng: target language
+    Returns:
+        Translated MEN dataset in target language
+
+    """
+    translated_men = []
+    for entry in men:
+        translated_men.append(
+            translate_word(entry["word_L"], lng),
+            translate_word(entry["word_R"], lng),
+            entry["similarity"])
+    return translate_men
+
+
 if __name__ == "__main__":
     print(translate_word("cat"))
     print(translate_word("dog"))
