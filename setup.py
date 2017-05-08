@@ -19,7 +19,7 @@ setup(
     license='MIT',
     platforms=["any"],
     packages=['mumen'],
-    install_requires=['requests', 'nltk'],
+    install_requires=['requests', 'nltk', 'pyyaml'],
     # Add test suite
     # Add entry point
 )
