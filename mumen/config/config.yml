@@ -1,8 +1,8 @@
 --- # input
 MEN:
-  - type: natural
-  - source: online
-  - language: English
+  type: natural
+  source: online
+  language: English
 DICT:
-  - type: WordNet
-  - language: Japanese
+  type: WordNet
+  language: Japanese
