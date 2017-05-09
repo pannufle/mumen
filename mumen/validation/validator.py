@@ -9,6 +9,7 @@ author_email: martino.ferrari@etu.unige.ch
 import yaml
 from mumen.exceptions.validation import ValidationException
 import mumen.validation.validators.men_extraction as men_extractor
+import mumen.validation.validators.men_translation as men_translation
 
 
 def load_yml(path):
@@ -43,6 +44,8 @@ def validate_yml(config):
     try:
         if config['MEN']:
             men_extractor.validate(config['MEN'])
+        if config["Translation"]:
+            men_translation.validate(config['Translation'])
     except KeyError as exc:
         raise ValidationException("Validation error: {}".format(exc))
     return config
