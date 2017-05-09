@@ -10,6 +10,7 @@ author_email: martino.ferrari@etu.unige.ch
 import os
 import zipfile
 import requests
+from mumen.constants import ONLINE_SOURCE, MENType
 
 
 def parse_men_row(row):
@@ -48,7 +49,7 @@ def encode_men_row(entry):
                              entry["similarity"])
 
 
-def downlaod_men():
+def downlaod_men(m_type):
     """Download the last version of the MEN data-set.
 
     Base url:  https://staff.fnwi.uva.nl/e.bruni/resources.
@@ -69,10 +70,9 @@ def downlaod_men():
                     download.write(chunk)
             with zipfile.ZipFile(".tmp/MEN.zip", "r") as zip_ref:
                 zip_ref.extractall(".tmp/")
-
-        with open(".tmp/MEN/MEN_dataset_natural_form_full", "r") as men_file:
-            for men_row in men_file:
-                yield parse_men_row(men_row)
+        if m_type == MENType.NATURAL:
+            return load(".tmp/MEN/MEN_dataset_natural_form_full")
+        return load(".tmp/MEN/MEN_dataset_lemma_form_full")
     else:
         raise Exception("Download failed ({}) : {}".format(reponse.status_code,
                                                            reponse.text))
@@ -105,6 +105,24 @@ def store(men, path):
             men_file.write('{}\n'.format(encode_men_row(entry)))
 
 
+def men_pipeline(config):
+    """Exec MEN pipeline.
+
+    Args:
+        config: YML validate config.
+
+    Returns:
+        pairs of MEN words.
+
+    """
+    module = config['MEN']
+    if module['source'] == ONLINE_SOURCE:
+        return downlaod_men(MENType.convert(module['type']))
+
+    path = module['source'].split('path:')[1]
+    return load(path)
+
+
 if __name__ == "__main__":
-    for men_entry in downlaod_men():
+    for men_entry in downlaod_men(MENType.NATURAL):
         print(men_entry)
