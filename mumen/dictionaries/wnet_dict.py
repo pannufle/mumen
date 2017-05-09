@@ -7,7 +7,29 @@ author: Martino Ferrari
 author_email: martino.ferrari@etu.unige.ch
 """
 from nltk.corpus import wordnet as wn
+from mumen.constants import Lang, LANGUAGES
 from mumen.exceptions.translation import TException
+
+
+def lang2str(lang):
+    """Convert Lang enum to wnet string.
+
+    Args:
+        lang: Lang enum.
+
+    Returns:
+        wordnet language string.
+
+    """
+    if isinstance(lang, str):
+        lang = LANGUAGES[lang]
+    if lang == Lang.JPN:
+        return "jpn"
+    if lang == Lang.ENG:
+        return "eng"
+    if lang == Lang.ARB:
+        return "arb"
+    raise Exception("Lang not supported: {}".format(lang))
 
 
 def translate_word(word, lng="jpn"):
@@ -23,12 +45,12 @@ def translate_word(word, lng="jpn"):
     syns = wn.synsets(word)
     if not syns:
         raise TException("No synset found for {}".format(word))
-    lemmas = set()
+    lemmas = []
     for syn in syns:
-        lemmas |= set(syn.lemma_names(lng))
+        lemmas.extend(syn.lemma_names(lng))
     if not lemmas:
         raise TException("No translation found for {} in {}".format(word, lng))
-    return lemmas
+    return lemmas[0]
 
 
 def translate_men(men, lng="jpn"):
@@ -41,13 +63,12 @@ def translate_men(men, lng="jpn"):
         Translated MEN dataset in target language
 
     """
-    translated_men = []
     for entry in men:
-        translated_men.append(
-            translate_word(entry["word_L"], lng),
-            translate_word(entry["word_R"], lng),
-            entry["similarity"])
-    return translate_men
+        yield {
+            "word_L": translate_word(entry["word_L"], lng),
+            "word_R": translate_word(entry["word_R"], lng),
+            "similarity": entry["similarity"]
+        }
 
 
 if __name__ == "__main__":
