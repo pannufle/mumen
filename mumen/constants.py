@@ -9,9 +9,6 @@ author_email: martino.ferrari@etu.unige.ch
 import enum
 
 
-CONFIG_PATH = "mumen/config/config.yml"
-
-
 class MENType(enum.Enum):
     """MEN Type enumarator.
 
