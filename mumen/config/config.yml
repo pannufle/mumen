@@ -1,8 +1,0 @@
---- # input
-MEN:
-  type: natural
-  source: online
-  language: English
-Translation:
-  dictionary: WordNet
-  language: Japanese
