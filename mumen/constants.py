@@ -51,7 +51,7 @@ class Lang(enum.Enum):
     ARB = 2
 
 
-class Dict(enum.Enum):
+class Dictionary(enum.Enum):
     """Dictionaries enumerator.
 
     Simple enumerator for the mumen avaiable dictionaries.
@@ -64,3 +64,6 @@ class Dict(enum.Enum):
 
 ONLINE_SOURCE = "online"
 LANGUAGES = {"Arabic": Lang.ARB, "English": Lang.ENG, "Japanese": Lang.JPN}
+DICTIONARIES = {"WordNet": Dictionary.WORDNET,
+                "FreeDict": Dictionary.FREEDICT,
+                "JMDict": Dictionary.JMDICT}
