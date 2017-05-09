@@ -41,9 +41,9 @@ def validate_yml(config):
 
     """
     try:
-        if config['MEN'] is True:
+        if config['MEN']:
             men_extractor.validate(config['MEN'])
-    except ValidationException as exc:
+    except KeyError as exc:
         raise ValidationException("Validation error: {}".format(exc))
     return config
 
