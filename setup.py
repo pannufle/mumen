@@ -22,4 +22,9 @@ setup(
     install_requires=['requests', 'nltk', 'pyyaml'],
     # Add test suite
     # Add entry point
+    entry_points={
+        'console_scripts': [
+            'mumen = mumen.main:main'
+        ],
+    },
 )
