@@ -3,6 +3,6 @@ MEN:
   type: natural
   source: online
   language: English
-DICT:
-  type: WordNet
+Translation:
+  dictionary: WordNet
   language: Japanese
