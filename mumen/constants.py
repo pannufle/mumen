@@ -21,6 +21,24 @@ class MENType(enum.Enum):
     NATURAL = 0
     LEMMA = 1
 
+    @staticmethod
+    def convert(string):
+        """Convert string to MENType.
+
+        Args:
+            string: string to convert.
+
+        Returns:
+            MENType enum.
+
+        """
+        if string == "natural":
+            return MENType.NATURAL
+        elif string == "lemma":
+            return MENType.LEMMA
+        else:
+            raise Exception("String can not be converted: {}".format(string))
+
 
 class Lang(enum.Enum):
     """Languages enumerator.
@@ -42,3 +60,7 @@ class Dict(enum.Enum):
     WORDNET = 0
     FREEDICT = 1
     JMDICT = 3
+
+
+ONLINE_SOURCE = "online"
+LANGUAGES = {"Arabic": Lang.ARB, "English": Lang.ENG, "Japanese": Lang.JPN}
