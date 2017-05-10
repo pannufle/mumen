@@ -1,0 +1,4 @@
+[pydocstyle]
+# Disabled checks:
+# D104: Missing docstring in public package
+ignore = D104
