@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Demonstrate high quality docstrings.
+"""
+Demonstrate high quality docstrings.
 
 Module-level docstrings appear as the first "statement" in a module. Remember,
 that while strings are regular Python statements, comments are not, so an
