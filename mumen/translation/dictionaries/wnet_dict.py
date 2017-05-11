@@ -37,9 +37,13 @@ class WordNetDict:
         syns = wn.synsets(word)
         if not syns:
             return []
-        lemmas = []
+        lemmas = {}
         for syn in syns:
             for lemma in syn.lemma_names(self.__target__):
-                if lemma not in lemmas:
-                    lemmas.append(lemma)
+                lemmas[lemma] = 1.0
+        if not lemmas:
+            return {}
+        probability = 1.0/len(lemmas)
+        for lemma in lemmas:
+            lemmas[lemma] = probability
         return lemmas

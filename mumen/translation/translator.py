@@ -4,6 +4,7 @@
 author: Martino Ferrari
 author_email: martino.ferrari@etu.unige.ch
 """
+import operator
 from mumen.constants import Dictionary
 from mumen.translation.dictionaries.wnet_dict import WordNetDict
 from mumen.exceptions.translation import TranslationException
@@ -29,13 +30,25 @@ class Translator:
 
     def translate(self, word):
         """Translate a single word."""
-        translation = []
+        translation = {}
         for dic in self.__dictionaries__:
-            translation.extend(dic.translate(word))
+            translated = dic.translate(word)
+            for trans in translated:
+                if trans in translation:
+                    translation[trans] *= translated[trans]
+                else:
+                    translation[trans] = 0.1 * translated[trans]
+            for trans in translation:
+                if trans not in translated:
+                    translation[trans] *= 0.1
+
         if not translation:
             raise TranslationException(
                 "No translation for the word: {}".format(word))
-        return translation[0]
+        sorted_trans = sorted(translation.items(),
+                              key=operator.itemgetter(1),
+                              reverse=True)
+        return sorted_trans[0][0]
 
     def translate_pairs(self, word_a, word_b):
         """Translate couple of words."""
