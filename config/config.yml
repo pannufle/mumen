@@ -14,11 +14,11 @@ translation_step:
   preprocessing:
     capitalize: false
     lowercase: true
-    uppercase: false 
+    uppercase: false
   translator:
-    - wordnet: false
-    - freedict: true
-    - jmdict: false
+    - wordnet: true
+    - freedict: false
+    - jmdict: true
   freedict_conf:
     dict_dir: data/freedict/dicts/
   jmdict_conf:
