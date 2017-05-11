@@ -18,9 +18,9 @@ from mumen.exceptions.validation import ValidationException
 
 
 def __freedict_conf__(config, source_lang, target_lang):
-    dict_path = config['jmdict_conf']['dict_dir']
-    basepath = '{}-{}'.format(source_lang.to_wnet_lang_id(),
-                              target_lang.to_wnet_lang_id())
+    dict_path = config['freedict_conf']['dict_dir']
+    basepath = '{}-{}'.format(source_lang.to_3_lang_id(),
+                              target_lang.to_3_lang_id())
     basepath = FREEDICT_DICTS[basepath]
     dict_path = '{}{}/{}.tei'.format(dict_path, basepath, basepath)
     return dict_path
