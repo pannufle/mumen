@@ -86,7 +86,12 @@ class Dictionary(enum.Enum):
     FREEDICT = 1
     JMDICT = 3
 
+    @staticmethod
+    def from_name(name):
+        """Convert name to enum."""
+        return DICTIONARIES[name]
 
-DICTIONARIES = {"WordNet": Dictionary.WORDNET,
-                "FreeDict": Dictionary.FREEDICT,
-                "JMDict": Dictionary.JMDICT}
+
+DICTIONARIES = {"wordnet": Dictionary.WORDNET,
+                "freedict": Dictionary.FREEDICT,
+                "jmdict": Dictionary.JMDICT}
