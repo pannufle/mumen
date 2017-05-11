@@ -43,9 +43,37 @@ class Lang(enum.Enum):
     Simple enumarator for the mumen avaiable languages.
     """
 
-    ENG = 0
-    JPN = 1
-    ARB = 2
+    English = 0
+    Japanese = 1
+    Arabic = 2
+
+    @staticmethod
+    def from_lang_id(lang_id):
+        """Convert letter identifier into enum."""
+        if lang_id == "en":
+            return Lang.English
+        if lang_id == "ja":
+            return Lang.Japanese
+        if lang_id == "ar":
+            return Lang.Arabic
+
+    def to_lang_id(self):
+        """Convert to 2 letter identifier."""
+        if self == Lang.English:
+            return "en"
+        if self == Lang.Japanese:
+            return "ja"
+        if self == Lang.Arabic:
+            return "ar"
+
+    def to_wnet_lang_id(self):
+        """Convert to 3 letter identifier."""
+        if self == Lang.English:
+            return "eng"
+        if self == Lang.Japanese:
+            return "jpn"
+        if self == Lang.Arabic:
+            return "arb"
 
 
 class Dictionary(enum.Enum):
@@ -59,8 +87,6 @@ class Dictionary(enum.Enum):
     JMDICT = 3
 
 
-ONLINE_SOURCE = "online"
-LANGUAGES = {"Arabic": Lang.ARB, "English": Lang.ENG, "Japanese": Lang.JPN}
 DICTIONARIES = {"WordNet": Dictionary.WORDNET,
                 "FreeDict": Dictionary.FREEDICT,
                 "JMDict": Dictionary.JMDICT}
