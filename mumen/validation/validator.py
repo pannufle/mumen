@@ -6,27 +6,10 @@ Load a yml mumen configuration and validate it.
 author: Martino Ferrari
 author_email: martino.ferrari@etu.unige.ch
 """
-import yaml
 from mumen.exceptions.validation import ValidationException
-import mumen.validation.validators.men_extraction as men_extractor
-import mumen.validation.validators.men_translation as men_translation
-
-
-def load_yml(path):
-    """Load a yml file using pyyaml library.
-
-    Args:
-        path: path to the file to load.
-
-    Returns:
-        the yml data structure.
-
-    """
-    with open(path, "r") as stream:
-        try:
-            return yaml.load(stream)
-        except yaml.YAMLError as exc:
-            raise ValidationException(exc)
+import mumen.validation.validators.translation as translation
+import mumen.validation.validators.generation as generation
+import mumen.validation.validators.computation as computation
 
 
 def validate_yml(config):
@@ -42,14 +25,12 @@ def validate_yml(config):
 
     """
     try:
-        if config['MEN']:
-            men_extractor.validate(config['MEN'])
-        if config["Translation"]:
-            men_translation.validate(config['Translation'])
+        if config['translation']:
+            translation.validate(config['translation_step'])
+        if config['generation']:
+            generation.validate(config['generation_step'])
+        if config['computation']:
+            computation.validate(config['computation_step'])
     except KeyError as exc:
         raise ValidationException("Validation error: {}".format(exc))
     return config
-
-
-if __name__ == "__main__":
-    print(validate_yml(load_yml("../config/config.yml")))
