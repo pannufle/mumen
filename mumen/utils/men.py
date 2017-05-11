@@ -49,6 +49,7 @@ def load(path):
         path: path to the MEN file to load.
 
     Returns
+    -------
         the MEN Structure.
 
     """
@@ -78,6 +79,7 @@ def men_pipeline(config):
         config: YML validate config.
 
     Returns
+    -------
         pairs of MEN words.
 
     """
