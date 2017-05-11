@@ -12,6 +12,7 @@ class FreeDict(BaseDict):
     """Load freedict dictionaries and use it to translate words."""
 
     def __init__(self, dictionary_path, source_lang, target_lang):
+        """Initialize FreeDict dictionary."""
         BaseDict.__init__(self, source_lang, target_lang)
         self.__tree__ = etree.parse(dictionary_path)
         self.__direct__ = '{}-{}'.format(
