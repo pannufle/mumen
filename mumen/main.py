@@ -18,17 +18,16 @@ from mumen.exceptions.translation import TranslationException
 from mumen.exceptions.validation import ValidationException
 
 
-def __translation__(config):
-    logger = logging.getLogger(__name__)
-
-    in_file = config['source']['file']
-    source_lang = Lang.from_lang_id(config['source']['lang'])
-    target_lang = Lang.from_lang_id(config['target']['lang'])
+def __freedict_conf__(config, source_lang, target_lang):
     dict_path = config['jmdict_conf']['dict_dir']
     basepath = '{}-{}'.format(source_lang.to_wnet_lang_id(),
                               target_lang.to_wnet_lang_id())
     basepath = FREEDICT_DICTS[basepath]
     dict_path = '{}{}/{}.tei'.format(dict_path, basepath, basepath)
+    return dict_path
+
+
+def __load_dicts__(config, source_lang, target_lang):
     dictionaries = []
     for entry in config['translator']:
         for name in entry:
@@ -38,10 +37,27 @@ def __translation__(config):
                 if dic == Dictionary.WORDNET:
                     dictionaries.append(WordNetDict(source_lang, target_lang))
                 elif dic == Dictionary.FREEDICT:
+                    # freedic config
+                    dict_path = __freedict_conf__(config, source_lang,
+                                                  target_lang)
                     freedict = FreeDict(dict_path,
                                         source_lang,
                                         target_lang)
                     dictionaries.append(freedict)
+    return dictionaries
+
+
+def __translation__(config):
+    logger = logging.getLogger(__name__)
+    # input MEN file
+    in_file = config['source']['file']
+    # source lang
+    source_lang = Lang.from_lang_id(config['source']['lang'])
+    # target lang
+    target_lang = Lang.from_lang_id(config['target']['lang'])
+    # load dictionaries
+    dictionaries = __load_dicts__(config, source_lang, target_lang)
+    # start translation process
     for translation in translator.translate(
             men.load(in_file),
             source_lang,
