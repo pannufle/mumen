@@ -9,10 +9,11 @@ author_email: martino.ferrari@etu.unige.ch
 import sys
 import argparse
 import logging
-from mumen.validation.validator import load_yml, validate_yml
-from mumen.men.men import men_pipeline
-from mumen.dictionaries.translate import translate
-from mumen.exceptions.translation import TException
+from mumen.validation.validator import validate_yml
+from mumen.utils.men import men_pipeline
+from mumen.utils.configloader import load_yml
+from mumen.translation.translator import translate
+from mumen.exceptions.translation import TranslationException
 from mumen.exceptions.validation import ValidationException
 
 
@@ -27,20 +28,20 @@ def main():
     parser = argparse.ArgumentParser(
         description='Translate MEN and generate YACAB qeustions.')
     parser.add_argument(
-        'conf_path', metavar='conf_path', type=str,
+        'config', metavar='config', type=str,
         help='YML configuration to load.')
     logger = logging.getLogger(__name__)
     logger.info("Welcome to MuMEN!")
     args = parser.parse_args()
-    conf_path = args.conf_path
-    logger.info("Loading config: %s", conf_path)
+    config_file = args.config
+    logger.info("Loading config: %s", config_file)
     try:
         logger.setLevel(logging.DEBUG)
-        config = validate_yml(load_yml(conf_path))
+        config = validate_yml(load_yml(config_file))
 
         for men in translate(men_pipeline(config), config):
             logger.info(men)
-    except (ValidationException, TException) as exc:
+    except (ValidationException, TranslationException) as exc:
         logger.error(exc)
 
 
