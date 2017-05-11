@@ -10,14 +10,17 @@ from mumen.exceptions.translation import TranslationException
 
 
 class Translator:
-    """Class to manage multilingual, multidictionaries translation"""
+    """Class to manage multilingual, multidictionaries translation."""
+
     def __init__(self, source_lang, target_lang, dictionaries):
+        """Initialize translator."""
         self.__source__ = source_lang
         self.__target__ = target_lang
         self.__dictionaries__ = []
-        self.__load__dicts__(dictionaries)
+        self.__load_dicts__(dictionaries)
 
-    def __load__dicts__(self, dictionaries):
+    def __load_dicts__(self, dictionaries):
+        """Load dictionaries."""
         for dic in dictionaries:
             if dic == Dictionary.WORDNET:
                 self.__dictionaries__.append(WordNetDict(

@@ -11,7 +11,9 @@ from nltk.corpus import wordnet as wn
 
 class WordNetDict:
     """WordNet based dictionary."""
+
     def __init__(self, source_lang, target_lang):
+        """Initialize WordNet dictionary."""
         self.__source__ = source_lang.to_wnet_lang_id()
         self.__target__ = target_lang.to_wnet_lang_id()
 
