@@ -41,6 +41,7 @@ To run MuMEN, in the application folder, do:
 python3 setup.py develop
 ```
 Then **download** the freedict xml files from [FreeDict](https://github.com/freedict/fd-dictionaries) and put it in ```data/freedict``` as explained there!
+Also **download** the JMDict_e xml files from [JMDict](http://edrdg.org/jmdict/edict_doc.html#IREF01) and put it in ```data/jmdict``` as explained in the README there.
 
 Then run:
 ```
