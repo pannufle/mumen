@@ -20,7 +20,7 @@ class JMDict(BaseDict):
     def translate(self, word):
         """Translate word."""
         translations = defaultdict(lambda: 0)
-        if self.source() == "eng":
+        if self.__source__ == "eng":
             trans = self.__tree__.xpath('.//gloss[text()="{}"]'.format(word))
             for gloss in trans:
                 froms = gloss.getparent().getparent().find(".//reb").text
@@ -41,5 +41,5 @@ class JMDict(BaseDict):
 
 if __name__ == "__main__":
     PATH = "../../../data/jmdict/dicts/JMdict_e"
-    DICT = JMDict(PATH, "eng", "jpn")
+    DICT = JMDict(PATH, "en", "ja")
     print(DICT.translate("house"))

@@ -13,6 +13,7 @@ from mumen.constants import Lang, Dictionary, FREEDICT_DICTS
 import mumen.translation.translator as translator
 from mumen.translation.dictionaries.free_dict import FreeDict
 from mumen.translation.dictionaries.wnet_dict import WordNetDict
+from mumen.translation.dictionaries.jm_dict import JMDict
 from mumen.exceptions.translation import TranslationException
 from mumen.exceptions.validation import ValidationException
 
@@ -23,6 +24,11 @@ def __freedict_conf__(config, source_lang, target_lang):
                               target_lang.to_3_lang_id())
     basepath = FREEDICT_DICTS[basepath]
     dict_path = '{}{}/{}.tei'.format(dict_path, basepath, basepath)
+    return dict_path
+
+
+def __jmdict_conf__(config):
+    dict_path = config['jmdict_conf']['dict_file']
     return dict_path
 
 
@@ -43,6 +49,10 @@ def __load_dicts__(config, source_lang, target_lang):
                                         source_lang,
                                         target_lang)
                     dictionaries.append(freedict)
+                elif dic == Dictionary.JMDICT:
+                    file_path = __jmdict_conf__(config)
+                    jmdict = JMDict(file_path, source_lang, target_lang)
+                    dictionaries.append(jmdict)
     return dictionaries
 
 
