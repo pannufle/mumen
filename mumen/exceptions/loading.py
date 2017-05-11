@@ -1,12 +1,12 @@
 #! /usr/bin/python3
-"""Simple exception for translation process.
+"""Simple exception for loading process.
 
 author: Martino Ferrari
 author_email: martino.ferrari@etu.unige.ch
 """
 
 
-class TranslationException(Exception):
+class ConfigException(Exception):
     """Simple Exception for Mumen translation process."""
 
     def __init__(self, msg):
