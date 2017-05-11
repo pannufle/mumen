@@ -9,6 +9,7 @@ TEI_NS = {'n': 'http://www.tei-c.org/ns/1.0'}
 
 class FreeDict:
     """Load freedict dictionaries and use it to translate words."""
+    
     def __init__(self, dictionary_path, source_lang, target_lang):
         self.__tree__ = etree.parse(dictionary_path)
         self.__target__ = target_lang
