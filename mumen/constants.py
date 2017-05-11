@@ -38,7 +38,6 @@ class MENType(enum.Enum):
 
 
 class Lang(enum.Enum):
-
     """
     Languages enumerator.
 
@@ -79,7 +78,6 @@ class Lang(enum.Enum):
 
 
 class Dictionary(enum.Enum):
-
     """
     Dictionaries enumerator.
 
