@@ -1,7 +1,6 @@
-#! /usr/bin/python3
 """Simple wrapper for FreeDict."""
 from collections import defaultdict
-from lxml import etree
+import lxml.etree as etree
 from mumen.translation.dictionaries.base_dict import BaseDict
 
 # TEI namespaces

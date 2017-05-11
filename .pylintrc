@@ -41,8 +41,9 @@ unsafe-load-any-extension=no
 # all. Valid levels: HIGH, INFERENCE, INFERENCE_FAILURE, UNDEFINED
 confidence=
 
-# For dev, ignore TODOs and FIXMEs
-disable=W0511
+# W0511: For dev, ignore TODOs and FIXMEs
+# E1101: ignore module *** has no *** member
+disable=W0511,E1101
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option

@@ -1,4 +1,3 @@
-#! /usr/bin/python3
 """Utils to load and store yaml config file."""
 import yaml
 from mumen.exceptions.loading import ConfigException

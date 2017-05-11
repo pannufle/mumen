@@ -18,7 +18,6 @@ script:
   - pycodestyle mumen
   - pycodestyle tests
   - pylint --rcfile .pylintrc mumen
-  - pylint --rcfile .pylintrc tests
   - py.test --cov=tests/
 
 after_success:

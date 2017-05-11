@@ -17,7 +17,7 @@ setup(
     version='0.1.0',
     url='https://github.com/akb89/mumen',
     license='MIT',
-    platforms=["any"],
+    platforms=['any'],
     packages=['mumen'],
     install_requires=['requests', 'nltk', 'pyyaml', 'lxml'],
     # Add test suite
