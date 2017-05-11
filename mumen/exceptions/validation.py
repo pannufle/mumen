@@ -1,9 +1,5 @@
 #! /usr/bin/python3
-"""Simple exception for validation process.
-
-author: Martino Ferrari
-author_email: martino.ferrari@etu.unige.ch
-"""
+"""Simple exception for validation process."""
 
 
 class ValidationException(Exception):

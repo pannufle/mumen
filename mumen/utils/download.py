@@ -2,9 +2,6 @@
 
 Simple script to download MEN file from:
 https://staff.fnwi.uva.nl/e.bruni/resources/MEN.zip
-
-author: Martino Ferrari
-author_email: martino.ferrari@etu.unige.ch
 """
 import os
 import zipfile

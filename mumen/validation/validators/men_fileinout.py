@@ -1,9 +1,5 @@
 #! /usr/bin/python3
-"""Module to validate the MEN config section.
-
-author: Martino Ferrari
-author_email: martino.ferrari@etu.unige.ch
-"""
+"""Module to validate the MEN config section."""
 from mumen.exceptions.validation import ValidationException
 
 

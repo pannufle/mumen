@@ -2,9 +2,6 @@
 """Mumen constants.
 
 Few constants and enum for the mumen project.
-
-author: Martino Ferrari
-author_email: martino.ferrari@etu.unige.ch
 """
 import enum
 

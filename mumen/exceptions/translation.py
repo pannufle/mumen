@@ -1,9 +1,5 @@
 #! /usr/bin/python3
-"""Simple exception for translation process.
-
-author: Martino Ferrari
-author_email: martino.ferrari@etu.unige.ch
-"""
+"""Simple exception for translation process."""
 
 
 class TranslationException(Exception):

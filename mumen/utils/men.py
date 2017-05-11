@@ -3,9 +3,6 @@
 
 This module contains many utilities to load, creante and store MEN Files:
 https://staff.fnwi.uva.nl/e.bruni/MEN.
-
-author: Martino Ferrari
-author_email: martino.ferrari@etu.unige.ch
 """
 
 

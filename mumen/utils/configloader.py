@@ -1,9 +1,5 @@
 #! /usr/bin/python3
-"""Utils to load and store yaml config file.
-
-author: Martino Ferrari
-author_email: martino.ferrari@etu.unige.ch
-"""
+"""Utils to load and store yaml config file."""
 import yaml
 from mumen.exceptions.loading import ConfigException
 

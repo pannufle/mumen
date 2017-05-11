@@ -1,8 +1,5 @@
 #! /usr/bin/python3
 """Module to validate the Translation config section.
-
-author: Martino Ferrari
-author_email: martino.ferrari@etu.unige.ch
 """
 # from mumen.constants import DICTIONARIES
 # from mumen.exceptions.validation import ValidationException

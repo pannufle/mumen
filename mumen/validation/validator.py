@@ -2,9 +2,6 @@
 """Configuration Validator.
 
 Load a yml mumen configuration and validate it.
-
-author: Martino Ferrari
-author_email: martino.ferrari@etu.unige.ch
 """
 from mumen.exceptions.validation import ValidationException
 import mumen.validation.validators.translation as translation

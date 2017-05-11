@@ -3,9 +3,6 @@
 Mumen main script.
 
 Mumen read and translate MEN files and then use it to generate YACAB questions.
-Another test
-
-This is another test
 """
 import sys
 import argparse

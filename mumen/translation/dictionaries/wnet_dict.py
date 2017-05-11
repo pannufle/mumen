@@ -1,10 +1,7 @@
 #! /usr/bin/python3
 """WordNet Translator.
 
-Module to translate both words and MEN entries.
-
-author: Martino Ferrari
-author_email: martino.ferrari@etu.unige.ch
+Module to translate both words using wordnet.
 """
 from nltk.corpus import wordnet as wn
 

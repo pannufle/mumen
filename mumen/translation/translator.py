@@ -1,9 +1,5 @@
 #! /usr/bin/python3
-"""Module to translate a MEN file.
-
-author: Martino Ferrari
-author_email: martino.ferrari@etu.unige.ch
-"""
+"""Module to translate a MEN file."""
 import operator
 from mumen.constants import Dictionary
 from mumen.translation.dictionaries.wnet_dict import WordNetDict
