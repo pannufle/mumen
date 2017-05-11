@@ -6,23 +6,15 @@ Module to translate both words using wordnet.
 """
 from collections import defaultdict
 from nltk.corpus import wordnet as wn
+from mumen.translation.dictionaries.base_dict import BaseDict
 
 
-class WordNetDict:
+class WordNetDict(BaseDict):
     """WordNet based dictionary."""
 
     def __init__(self, source_lang, target_lang):
         """Initialize WordNet dictionary."""
-        self.__source__ = source_lang.to_wnet_lang_id()
-        self.__target__ = target_lang.to_wnet_lang_id()
-
-    def source(self):
-        """Get source language."""
-        return self.__source__
-
-    def target(self):
-        """Get target language."""
-        return self.__target__
+        BaseDict.__init__(source_lang, target_lang)
 
     def translate(self, word):
         """

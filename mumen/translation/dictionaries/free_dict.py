@@ -2,28 +2,20 @@
 """Simple wrapper for FreeDict."""
 from collections import defaultdict
 from lxml import etree
+from mumen.translation.dictionaries.base_dict import BaseDict
 
 # TEI namespaces
 TEI_NS = {'n': 'http://www.tei-c.org/ns/1.0'}
 
 
-class FreeDict:
+class FreeDict(BaseDict):
     """Load freedict dictionaries and use it to translate words."""
 
     def __init__(self, dictionary_path, source_lang, target_lang):
+        BaseDict.__init__(self, source_lang, target_lang)
         self.__tree__ = etree.parse(dictionary_path)
-        self.__target__ = target_lang
-        self.__source__ = source_lang
         self.__direct__ = '{}-{}'.format(
             source_lang, target_lang) in dictionary_path
-
-    def source(self):
-        """Get source language."""
-        return self.__source__
-
-    def target(self):
-        """Get target language."""
-        return self.__target__
 
     def translate(self, word):
         """Translate word."""
