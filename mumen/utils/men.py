@@ -24,11 +24,7 @@ def parse_men_row(row):
 
     """
     men_row = row.strip().split()
-    return {
-        "word_L": men_row[0],
-        "word_R": men_row[1],
-        "similarity": float(men_row[2])
-    }
+    return (men_row[0], men_row[1], float(men_row[2]))
 
 
 def encode_men_row(entry):
@@ -40,9 +36,9 @@ def encode_men_row(entry):
         MEN entry string
 
     """
-    return '{} {} {}'.format(entry["word_L"],
-                             entry["word_R"],
-                             entry["similarity"])
+    return '{} {} {}'.format(entry[0],
+                             entry[1],
+                             entry[2])
 
 
 def load(path):
