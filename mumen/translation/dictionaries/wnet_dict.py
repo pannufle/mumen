@@ -13,7 +13,7 @@ class WordNetDict(BaseDict):
 
     def __init__(self, source_lang, target_lang):
         """Initialize WordNet dictionary."""
-        BaseDict.__init__(source_lang, target_lang)
+        BaseDict.__init__(self, source_lang, target_lang)
 
     def translate(self, word):
         """Translate a word using WordNet.
@@ -24,6 +24,7 @@ class WordNetDict(BaseDict):
             Translated word
 
         """
+        word = word.lower()
         syns = wn.synsets(word)
         if not syns:
             return []

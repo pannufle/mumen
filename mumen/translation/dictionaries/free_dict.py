@@ -16,27 +16,28 @@ class FreeDict(BaseDict):
         BaseDict.__init__(self, source_lang, target_lang)
         self.__tree__ = etree.parse(dictionary_path)
         self.__direct__ = '{}-{}'.format(
-            source_lang, target_lang) in dictionary_path
+            source_lang.to_3_lang_id(),
+            target_lang.to_3_lang_id()) in dictionary_path
 
     def translate(self, word):
         """Translate word."""
+        word = word.lower()
+        words = [word, word.capitalize(), word.upper()]
         translations = defaultdict(lambda: 0)
         total = 0
-        if not self.__direct__:
+        for l_word in words:
+            if not self.__direct__:
+                query = '..//n:entry[.//n:quote[text()="{}"]]'.format(l_word)
+                sub_query = './/n:orth'
+            else:
+                query = '..//n:entry[.//n:orth[text()="{}"]]'.format(l_word)
+                sub_query = './/n:quote'
+
             trans = self.__tree__.xpath(
-                '..//n:entry[.//n:quote[text()="{}"]]'.format(word),
+                query,
                 namespaces=TEI_NS)
             for entry in trans:
-                froms = entry.xpath('.//n:orth', namespaces=TEI_NS)
-                for trans in froms:
-                    translations[trans.text] += 1
-                    total += 1
-        else:
-            trans = self.__tree__.xpath(
-                '..//n:entry[.//n:orth[text()="{}"]]'.format(word),
-                namespaces=TEI_NS)
-            for entry in trans:
-                froms = entry.xpath('.//n:quote', namespaces=TEI_NS)
+                froms = entry.xpath(sub_query, namespaces=TEI_NS)
                 for trans in froms:
                     translations[trans.text] += 1
                     total += 1

@@ -1,6 +1,7 @@
 #! /usr/bin/python3
 """Module to translate a MEN file."""
 import operator
+import logging
 from mumen.exceptions.translation import TranslationException
 
 
@@ -62,6 +63,12 @@ def translate(men_pairs, source_lang, target_lang, dictionaries):
         translated MEN file.
 
     """
+    logger = logging.getLogger(__name__)
     translator = Translator(source_lang, target_lang, dictionaries)
-    for (trad_a, trad_b, sim) in translator.translate_men_pairs(men_pairs):
-        yield (trad_a, trad_b, sim)
+
+    for (word_a, word_b, sim) in men_pairs:
+        try:
+            trad_a, trad_b = translator.translate_pairs(word_a, word_b)
+            yield (trad_a, trad_b, sim)
+        except TranslationException as exc:
+            logger.warning(exc)
