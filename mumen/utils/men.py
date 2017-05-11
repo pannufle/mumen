@@ -1,6 +1,5 @@
 #! /usr/bin/python3
-"""
-MEN Utilities.
+"""MEN Utilities.
 
 This module contains many utilities to load, creante and store MEN Files:
 https://staff.fnwi.uva.nl/e.bruni/MEN.
@@ -8,8 +7,7 @@ https://staff.fnwi.uva.nl/e.bruni/MEN.
 
 
 def parse_men_row(row):
-    """
-    Parse a MEN row.
+    """Parse a MEN row.
 
     Args:
         row: input row in form of "WORD_L WORD_R SIMILARITY"
@@ -27,8 +25,7 @@ def parse_men_row(row):
 
 
 def encode_men_row(entry):
-    """
-    Encode an MEN entry to .
+    """Encode an MEN entry to .
 
     Args:
         entry: MEN entry in form of dictionary
@@ -42,8 +39,7 @@ def encode_men_row(entry):
 
 
 def load(path):
-    """
-    Load a MEN FILE.
+    """Load a MEN FILE.
 
     Args:
         path: path to the MEN file to load.
@@ -59,8 +55,7 @@ def load(path):
 
 
 def store(men, path):
-    """
-    Store a MEN list to file.
+    """Store a MEN list to file.
 
     Args:
         param men: men list structure to save.
@@ -72,8 +67,7 @@ def store(men, path):
 
 
 def men_pipeline(config):
-    """
-    Exec MEN pipeline.
+    """Exec MEN pipeline.
 
     Args:
         config: YML validate config.

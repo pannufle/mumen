@@ -1,6 +1,5 @@
 #! /usr/bin/python3
-"""
-Mumen main script.
+"""Mumen main script.
 
 Mumen read and translate MEN files and then use it to generate YACAB questions.
 """

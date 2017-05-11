@@ -1,5 +1,4 @@
-"""
-Download and extract MEN file.
+"""Download and extract MEN file.
 
 Simple script to download MEN file from:
 https://staff.fnwi.uva.nl/e.bruni/resources/MEN.zip

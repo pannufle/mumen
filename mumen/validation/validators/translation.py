@@ -13,8 +13,7 @@ import mumen.validation.validators.men_fileinout as meninout
 
 
 def validate(module):
-    """
-    Validate the Translation section.
+    """Validate the Translation section.
 
     Args:
         module: Translation config section

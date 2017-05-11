@@ -1,6 +1,5 @@
 #! /usr/bin/python3
-"""
-Mumen constants.
+"""Mumen constants.
 
 Few constants and enum for the mumen project.
 """
@@ -8,8 +7,7 @@ import enum
 
 
 class MENType(enum.Enum):
-    """
-    MEN Type enumarator.
+    """MEN Type enumarator.
 
     Simple enumerator for the MEN file type.
     """
@@ -19,8 +17,7 @@ class MENType(enum.Enum):
 
     @staticmethod
     def convert(string):
-        """
-        Convert string to MENType.
+        """Convert string to MENType.
 
         Args
         ----
@@ -40,8 +37,7 @@ class MENType(enum.Enum):
 
 
 class Lang(enum.Enum):
-    """
-    Languages enumerator.
+    """Languages enumerator.
 
     Simple enumarator for the mumen avaiable languages.
     """
@@ -80,8 +76,7 @@ class Lang(enum.Enum):
 
 
 class Dictionary(enum.Enum):
-    """
-    Dictionaries enumerator.
+    """Dictionaries enumerator.
 
     Simple enumerator for the mumen avaiable dictionaries.
     """
