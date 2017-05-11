@@ -17,6 +17,8 @@ translation_step:
     - jmdict: false
   freedict_conf:
     dict_dir: data/freedict/dicts/
+  jmdict_conf:
+    dict_file: data/jmdict/dicts/JMdict_e
 generation_step:
   source:
     file: data/MEN/MEN_jp_no_similarity
