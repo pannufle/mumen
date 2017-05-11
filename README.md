@@ -13,27 +13,6 @@
 3. Input a YACAB dump containing a list of crowdsourced annotations and output a MEN dataset
 
 
-## Evaluation template
-| Standard                                | YES |  NO |
-| --------------------------------------- | :-: | :-: |
-| Does the app build correctly           |     |     |
-| Is the test coverage 100%           |     |     |
-| Is the codeclimate metric equal to 4    |     |     |
-| Does the README include clear instructions on how to run the app          |     |     |
-| Do those instructions work          |     |     |
-| Is the pipeline of the application documented          |     |     |
-| Is it documented in a diagram         | | |
-| Does the architecture of the application match the documented pipeline    | | |
-| Is the team progress clearly documented in the README (with a list of completed tasks and remaining todos)        | | |
-| Is the list of todos comprehensive       | | |
-| Is the architecture scalable (can additionnal modules, languages, utils be added without breaking the app)        | | |
-| Are architectural choices consistent across the app       | | |
-| Is the config fully externalized        | | |
-| Is the setup.py fully configured for modularization with PyPy        | | |
-| Are all good practices respected        | | |
-| Do docstrings fully respect reST standards for export to Sphinx       | | |
-
-
 ## HowTo
 ### Run MuMEN
 Before installing and runing MuMEN you need to install both ```libxsl``` and ```libxml2``` libraries, on Ubuntu:
