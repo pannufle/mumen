@@ -1,0 +1,37 @@
+--- # input
+translation: true
+generation: false
+computation: false
+translation_step:
+  source:
+    file: data/MEN/MEN_dataset_natural_form_full
+    type: natural
+    lang: en
+  target:
+    file: data/MEN/MEN_ar_no_similarity
+    type: natural
+    lang: ja
+  preprocessing:
+    capitalize: false
+    lowercase: true
+    uppercase: false
+  translator:
+    - wordnet: true
+    - freedict: false
+    - jmdict: true
+  freedict_conf:
+    dict_dir: data/freedict/dicts/
+  jmdict_conf:
+    dict_file: data/jmdict/dicts/JMdict_e
+generation_step:
+  source:
+    file: data/MEN/MEN_jp_no_similarity
+    type: natural
+    lang: ja
+  target:
+    file: data/YACAB/jp.json
+computation_step:
+  source:
+    file: data/YACAB/jp_results.json
+  target:
+    file: data/MEN/MEN_jp_natural_form_full

@@ -87,3 +87,8 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Temproary files and directory
+.tmp
+data/freedict/dicts/*
+data/jmdict/dicts/*
