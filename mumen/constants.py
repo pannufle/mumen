@@ -65,7 +65,7 @@ class Lang(enum.Enum):
         if self == Lang.Arabic:
             return "ar"
 
-    def to_wnet_lang_id(self):
+    def to_3_lang_id(self):
         """Convert Lang enum to 3 letter identifier."""
         if self == Lang.English:
             return "eng"
@@ -73,6 +73,15 @@ class Lang(enum.Enum):
             return "jpn"
         if self == Lang.Arabic:
             return "ara"
+
+    def to_wnet_lang_id(self):
+        """Convert Lang enum to wordnet letter identifier."""
+        if self == Lang.English:
+            return "eng"
+        if self == Lang.Japanese:
+            return "jpn"
+        if self == Lang.Arabic:
+            return "arb"
 
 
 class Dictionary(enum.Enum):
