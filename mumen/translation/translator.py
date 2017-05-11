@@ -58,7 +58,7 @@ def translate(men_pairs, source_lang, target_lang, dictionaries):
         target_lang: target lang
         dictionaries: list of enabled dictionaries
 
-    Returns:
+    Returns
         translated MEN file.
 
     """

@@ -11,7 +11,7 @@ def load_yml(path):
     Args:
         path: path to the file to load.
 
-    Returns:
+    Returns
         the yml data structure.
 
     """

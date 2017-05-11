@@ -19,7 +19,7 @@ def validate_yml(config):
     Args:
         config: yml data structure.
 
-    Returns:
+    Returns
         the validated yml data structure.
 
     """
