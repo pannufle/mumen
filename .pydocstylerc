@@ -1,4 +1,5 @@
 [pydocstyle]
 # Disabled checks:
 # D104: Missing docstring in public package
-ignore = D104
+# D212: Multi-line docstring summary should start at the first line
+ignore = D104,D212

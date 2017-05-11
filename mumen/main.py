@@ -1,10 +1,11 @@
 #! /usr/bin/python3
-"""Mumen main script.
+"""
+Mumen main script.
 
 Mumen read and translate MEN files and then use it to generate YACAB questions.
+Another test
 
-author: Martino Ferrari
-author_email: martino.ferrari@etu.unige.ch
+This is another test
 """
 import sys
 import argparse
@@ -40,10 +41,7 @@ def __translation__(config):
 
 
 def main():
-    """Exec mumen.
-
-    This is the main entry point of the project.
-    """
+    """Launch the MuMen application with the provided config file."""
     logging.basicConfig(format='%(levelname)s - %(message)s',
                         level=logging.DEBUG,
                         stream=sys.stdout)
