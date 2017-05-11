@@ -36,6 +36,12 @@
 
 ## HowTo
 ### Run MuMEN
+Before installing and runing MuMEN you need to install both ```libxsl``` and ```libxml2``` libraries, on Ubuntu:
+```
+sudo apt-get install libxml2-dev libxslt-dev
+```
+
+
 To run MuMEN, in the application folder, do:
 ```
 python3 setup.py develop
