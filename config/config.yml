@@ -13,8 +13,13 @@ translation_step:
     lang: ja
   translator:
     - wordnet: true
-    - freedict: false
+    - freedict: true
     - jmdict: false
+  jmdict_conf:
+    dict_dir: data/freedict/dicts/
+    languages:
+      - ar: eng-ara
+      - jp: jpn-eng
 generation_step:
   source:
     file: data/MEN/MEN_jp_no_similarity
