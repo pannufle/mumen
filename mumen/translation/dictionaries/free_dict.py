@@ -20,26 +20,22 @@ class FreeDict(BaseDict):
 
     def translate(self, word):
         """Translate word."""
-        word = word.lower()
-        words = [word, word.capitalize(), word.upper()]
         translations = defaultdict(lambda: 0)
         total = 0
-        for l_word in words:
-            if not self.__direct__:
-                query = '..//n:entry[.//n:quote[text()="{}"]]'.format(l_word)
-                sub_query = './/n:orth'
-            else:
-                query = '..//n:entry[.//n:orth[text()="{}"]]'.format(l_word)
-                sub_query = './/n:quote'
-
-            trans = self.__tree__.xpath(
-                query,
-                namespaces=TEI_NS)
-            for entry in trans:
-                froms = entry.xpath(sub_query, namespaces=TEI_NS)
-                for trans in froms:
-                    translations[trans.text] += 1
-                    total += 1
+        if not self.__direct__:
+            query = '..//n:entry[.//n:quote[text()="{}"]]'.format(word)
+            sub_query = './/n:orth'
+        else:
+            query = '..//n:entry[.//n:orth[text()="{}"]]'.format(word)
+            sub_query = './/n:quote'
+        trans = self.__tree__.xpath(
+            query,
+            namespaces=TEI_NS)
+        for entry in trans:
+            froms = entry.xpath(sub_query, namespaces=TEI_NS)
+            for trans in froms:
+                translations[trans.text] += 1
+                total += 1
         for tran in translations:
             translations[tran] /= total
         return translations

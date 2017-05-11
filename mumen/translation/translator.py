@@ -2,6 +2,7 @@
 """Module to translate a MEN file."""
 import operator
 import logging
+from collections import defaultdict
 from mumen.exceptions.translation import TranslationException
 
 
@@ -16,18 +17,11 @@ class Translator:
 
     def translate(self, word):
         """Translate a single word."""
-        translation = {}
+        translation = defaultdict(int)
         for dic in self.__dictionaries__:
             translated = dic.translate(word)
             for trans in translated:
-                if trans in translation:
-                    translation[trans] *= translated[trans]
-                else:
-                    translation[trans] = 0.1 * translated[trans]
-            for trans in translation:
-                if trans not in translated:
-                    translation[trans] *= 0.1
-
+                translation[trans] += translated[trans]
         if not translation:
             raise TranslationException(
                 "No translation for the word: {}".format(word))

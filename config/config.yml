@@ -10,11 +10,15 @@ translation_step:
   target:
     file: data/MEN/MEN_ar_no_similarity
     type: natural
-    lang: ar
+    lang: ja
+  preprocessing:
+    capitalize: false
+    lowercase: true
+    uppercase: false
   translator:
-    - wordnet: false
-    - freedict: true
-    - jmdict: false
+    - wordnet: true
+    - freedict: false
+    - jmdict: true
   freedict_conf:
     dict_dir: data/freedict/dicts/
   jmdict_conf:
