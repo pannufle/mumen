@@ -40,8 +40,18 @@ To run MuMEN, in the application folder, do:
 ```
 python3 setup.py develop
 ```
+Few more NLTK dependencies has to be installed to be able to run it correctly:
+
+```python
+import nltk
+
+nltk.download('nltk')
+nltk.download('omw')
+```
+
 Then **download** the freedict xml files from [FreeDict](https://github.com/freedict/fd-dictionaries) and put it in ```data/freedict``` as explained there!
 Also **download** the JMDict_e xml files from [JMDict](http://edrdg.org/jmdict/edict_doc.html#IREF01) and put it in ```data/jmdict``` as explained in the README there.
+
 
 Then run:
 ```
@@ -50,6 +60,27 @@ mumen config/config.yml
 to launch the application with the standard config
 
 ## Pipeline
+
+The pipeline is divided in 3 indipendent section.
+
+### Translation
+
+This section will load a MEN file and it will translate it in an another language.
+
+![pipeline translation](documentation/Translation.png)
+
+### Generation
+
+This section will load a MEN file and it will generate a YACAB survey file.
+
+![pipeline translation](documentation/Generation.png)
+
+### Computation
+
+This section will load a YACAB survey result file and it will generate a new MEN file with the computed similarities.
+
+![pipeline translation](documentation/Computation.png)
+
 
 
 ## Useful stuff
