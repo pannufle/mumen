@@ -1,4 +1,5 @@
-"""How to write meaningful docstrings.
+"""
+How to write meaningful docstrings.
 
 Check out:
 http://stackoverflow.com/questions/

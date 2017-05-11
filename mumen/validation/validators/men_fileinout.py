@@ -4,7 +4,8 @@ from mumen.exceptions.validation import ValidationException
 
 
 def validate(module):
-    """Validate MEN config section.
+    """
+    Validate MEN config section.
 
     Args:
         module: MEN config section

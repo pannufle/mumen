@@ -6,7 +6,8 @@ class TranslationException(Exception):
     """Simple Exception for Mumen translation process."""
 
     def __init__(self, msg):
-        """Inizialize validation error.
+        """
+        Inizialize validation error.
 
         Args:
             msg: error message as string.

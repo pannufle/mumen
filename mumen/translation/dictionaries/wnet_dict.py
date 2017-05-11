@@ -1,5 +1,6 @@
 #! /usr/bin/python3
-"""WordNet Translator.
+"""
+WordNet Translator.
 
 Module to translate both words using wordnet.
 """
@@ -23,7 +24,8 @@ class WordNetDict:
         return self.__target__
 
     def translate(self, word):
-        """Translate a word using WordNet.
+        """
+        Translate a word using WordNet.
 
         Args:
             word: word to translate

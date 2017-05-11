@@ -58,7 +58,8 @@ class Translator:
 
 
 def translate(men_pairs, source_lang, target_lang, dictionaries):
-    """Translate MEN file pipeline.
+    """
+    Translate MEN file pipeline.
 
     This function permits to use one dictionary to translate a MEN file.
 

@@ -1,5 +1,6 @@
 #! /usr/bin/python3
-"""Configuration Validator.
+"""
+Configuration Validator.
 
 Load a yml mumen configuration and validate it.
 """
@@ -10,7 +11,8 @@ import mumen.validation.validators.computation as computation
 
 
 def validate_yml(config):
-    """Validate yml Configuration.
+    """
+    Validate yml Configuration.
 
     Read and yml file, check the settings and return a valid configuration.
 

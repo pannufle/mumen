@@ -5,7 +5,8 @@ from mumen.exceptions.loading import ConfigException
 
 
 def load_yml(path):
-    """Load a yml file using pyyaml library.
+    """
+    Load a yml file using pyyaml library.
 
     Args:
         path: path to the file to load.

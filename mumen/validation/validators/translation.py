@@ -1,6 +1,5 @@
 #! /usr/bin/python3
-"""Module to validate the Translation config section.
-"""
+"""Module to validate the Translation config section."""
 # from mumen.constants import DICTIONARIES
 # from mumen.exceptions.validation import ValidationException
 import mumen.validation.validators.men_fileinout as meninout
@@ -14,7 +13,8 @@ import mumen.validation.validators.men_fileinout as meninout
 
 
 def validate(module):
-    """Validate the Translation section.
+    """
+    Validate the Translation section.
 
     Args:
         module: Translation config section
