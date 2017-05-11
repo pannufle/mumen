@@ -1,4 +1,3 @@
-#! /usr/bin/python3
 """Base dictionary class."""
 from abc import abstractmethod
 
