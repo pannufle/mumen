@@ -13,7 +13,8 @@ install:
   - pip install pylint pydocstyle pycodestyle pytest-cov codeclimate-test-reporter
 
 script:
-  - pydocstyle
+  - pydocstyle mumen
+  - pydocstyle tests
   - pycodestyle mumen
   - pycodestyle tests
   - pylint --rcfile .pylintrc mumen
