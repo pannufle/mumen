@@ -1,7 +1,6 @@
-#! /usr/bin/python3
 """Simple wrapper for JMDict."""
 from collections import defaultdict
-from lxml import etree
+import lxml.etree as etree
 from mumen.translation.dictionaries.base_dict import BaseDict
 
 
@@ -37,9 +36,3 @@ class JMDict(BaseDict):
                 for trans in froms:
                     translations[trans.text] += 1
         return translations
-
-
-if __name__ == "__main__":
-    PATH = "../../../data/jmdict/dicts/JMdict_e"
-    DICT = JMDict(PATH, "en", "ja")
-    print(DICT.translate("house"))
