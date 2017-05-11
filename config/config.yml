@@ -8,18 +8,15 @@ translation_step:
     type: natural
     lang: en
   target:
-    file: data/MEN/MEN_jp_no_similarity
+    file: data/MEN/MEN_ar_no_similarity
     type: natural
-    lang: ja
+    lang: ar
   translator:
-    - wordnet: true
+    - wordnet: false
     - freedict: true
     - jmdict: false
-  jmdict_conf:
+  freedict_conf:
     dict_dir: data/freedict/dicts/
-    languages:
-      - ar: eng-ara
-      - jp: jpn-eng
 generation_step:
   source:
     file: data/MEN/MEN_jp_no_similarity
