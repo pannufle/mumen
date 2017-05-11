@@ -36,10 +36,12 @@
 
 ## HowTo
 ### Run MuMEN
-To run NiMa, in the application folder, do:
+To run MuMEN, in the application folder, do:
 ```
 python3 setup.py develop
 ```
+Then **download** the freedict xml files from [FreeDict](https://github.com/freedict/fd-dictionaries) and put it in ```data/freedict``` as explained there!
+
 Then run:
 ```
 mumen config/config.yml
