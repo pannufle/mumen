@@ -22,10 +22,12 @@ class MENType(enum.Enum):
         """
         Convert string to MENType.
 
-        Args:
+        Args
+        ----
             string: string to convert.
 
-        Returns:
+        Returns
+        -------
             MENType enum.
 
         """
@@ -50,7 +52,7 @@ class Lang(enum.Enum):
 
     @staticmethod
     def from_lang_id(lang_id):
-        """Convert letter identifier into enum."""
+        """Convert letter identifier into Lang enum."""
         if lang_id == "en":
             return Lang.English
         if lang_id == "ja":
@@ -59,7 +61,7 @@ class Lang(enum.Enum):
             return Lang.Arabic
 
     def to_lang_id(self):
-        """Convert to 2 letter identifier."""
+        """Convert Lang enum to 2 letter identifier."""
         if self == Lang.English:
             return "en"
         if self == Lang.Japanese:
@@ -68,13 +70,13 @@ class Lang(enum.Enum):
             return "ar"
 
     def to_wnet_lang_id(self):
-        """Convert to 3 letter identifier."""
+        """Convert Lang enum to 3 letter identifier."""
         if self == Lang.English:
             return "eng"
         if self == Lang.Japanese:
             return "jpn"
         if self == Lang.Arabic:
-            return "arb"
+            return "ara"
 
 
 class Dictionary(enum.Enum):
@@ -90,10 +92,17 @@ class Dictionary(enum.Enum):
 
     @staticmethod
     def from_name(name):
-        """Convert name to enum."""
+        """Convert name string to enum."""
         return DICTIONARIES[name]
 
 
 DICTIONARIES = {"wordnet": Dictionary.WORDNET,
                 "freedict": Dictionary.FREEDICT,
                 "jmdict": Dictionary.JMDICT}
+
+FREEDICT_DICTS = {
+    "jpn-eng": "jpn-eng",
+    "eng-jpn": "jpn-eng",
+    "ara-eng": "ara-eng",
+    "eng-ara": "eng-ara"
+}
