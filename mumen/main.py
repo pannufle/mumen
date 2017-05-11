@@ -10,11 +10,33 @@ import sys
 import argparse
 import logging
 from mumen.validation.validator import validate_yml
-from mumen.utils.men import men_pipeline
+import mumen.utils.men as men
 from mumen.utils.configloader import load_yml
+from mumen.constants import Lang, Dictionary
 from mumen.translation.translator import translate
 from mumen.exceptions.translation import TranslationException
 from mumen.exceptions.validation import ValidationException
+
+
+def __translation__(config):
+    logger = logging.getLogger(__name__)
+
+    in_file = config['source']['file']
+    # out_file = config['target']['file']
+    source_lang = Lang.from_lang_id(config['source']['lang'])
+    target_lang = Lang.from_lang_id(config['target']['lang'])
+    dictionaries = []
+    for entry in config['translator']:
+        for name in entry:
+            enabled = entry[name]
+            if enabled:
+                dictionaries.append(Dictionary.from_name(name))
+    for translation in translate(
+            men.load(in_file),
+            source_lang,
+            target_lang,
+            dictionaries):
+        logger.info(translation)
 
 
 def main():
@@ -38,9 +60,8 @@ def main():
     try:
         logger.setLevel(logging.DEBUG)
         config = validate_yml(load_yml(config_file))
-
-        for men in translate(men_pipeline(config), config):
-            logger.info(men)
+        if config['translation']:
+            __translation__(config['translation_step'])
     except (ValidationException, TranslationException) as exc:
         logger.error(exc)
 
