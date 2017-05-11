@@ -4,6 +4,7 @@ WordNet Translator.
 
 Module to translate both words using wordnet.
 """
+from collections import defaultdict
 from nltk.corpus import wordnet as wn
 
 
@@ -36,13 +37,14 @@ class WordNetDict:
         syns = wn.synsets(word)
         if not syns:
             return []
-        lemmas = {}
+        lemmas = defaultdict(lambda: 1)
+        total = 0
         for syn in syns:
             for lemma in syn.lemma_names(self.__target__):
-                lemmas[lemma] = 1.0
-        if not lemmas:
+                lemmas[lemma] += 1
+                total += 1
+        if not total:
             return {}
-        probability = 1.0/len(lemmas)
         for lemma in lemmas:
-            lemmas[lemma] = probability
+            lemmas[lemma] /= total
         return lemmas

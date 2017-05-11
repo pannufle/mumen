@@ -1,8 +1,6 @@
 #! /usr/bin/python3
 """Module to translate a MEN file."""
 import operator
-from mumen.constants import Dictionary
-from mumen.translation.dictionaries.wnet_dict import WordNetDict
 from mumen.exceptions.translation import TranslationException
 
 
@@ -13,16 +11,7 @@ class Translator:
         """Initialize translator."""
         self.__source__ = source_lang
         self.__target__ = target_lang
-        self.__dictionaries__ = []
-        self.__load_dicts__(dictionaries)
-
-    def __load_dicts__(self, dictionaries):
-        """Load dictionaries."""
-        for dic in dictionaries:
-            if dic == Dictionary.WORDNET:
-                self.__dictionaries__.append(WordNetDict(
-                    self.__source__,
-                    self.__target__))
+        self.__dictionaries__ = dictionaries
 
     def translate(self, word):
         """Translate a single word."""
