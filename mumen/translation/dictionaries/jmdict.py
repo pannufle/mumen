@@ -18,8 +18,8 @@ class JMDict(BaseDict):
 
     def translate(self, word):
         """Translate word."""
-        translations = defaultdict(lambda: 0)
-        if self.__source__ == "eng":
+        translations = defaultdict(lambda: 0)  # replace lambda: 0 by int
+        if self.__source__ == 'eng':
             trans = self.__tree__.xpath('.//gloss[text()="{}"]'.format(word))
             for gloss in trans:
                 froms = gloss.getparent().getparent().find(".//reb").text
