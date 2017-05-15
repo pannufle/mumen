@@ -1,9 +1,17 @@
-#! /usr/bin/python3
 """Mumen constants.
 
 Few constants and enum for the mumen project.
 """
 import enum
+
+HYPHEN = '-'
+
+
+LANG_ISO_639_1_TO_2_DICT = {
+    'ar': 'ara',
+    'en': 'eng',
+    'ja': 'jpn'
+}
 
 
 class MENType(enum.Enum):
