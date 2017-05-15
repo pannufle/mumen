@@ -1,21 +1,33 @@
 #! /usr/bin/python3
 """Mumen main script.
 
-Mumen read and translate MEN files and then use it to generate YACAB questions.
+Mumen read and translate MEN files and then use it to generate YACAB surveys.
 """
 import sys
 import argparse
 import logging
-from mumen.validation.validator import validate_yml
-import mumen.utils.men as men
-from mumen.utils.configloader import load_yml
-from mumen.constants import Lang, Dictionary, FREEDICT_DICTS
+import yaml
+
 import mumen.translation.translator as translator
+import mumen.validation.validator as validator
+import mumen.utils.files as futils
+from mumen.exceptions.input import InvalidInputError
+from mumen.exceptions.method import InvalidMethodError
+from mumen.exceptions.parameter import InvalidParameterError
+from mumen.exceptions.validation import ValidationError
+from mumen.utils.immutables import ImmutableConfig
+
+
+
+
+from mumen.constants import Lang, Dictionary, FREEDICT_DICTS
 from mumen.translation.dictionaries.free_dict import FreeDict
 from mumen.translation.dictionaries.wnet_dict import WordNetDict
 from mumen.translation.dictionaries.jm_dict import JMDict
-from mumen.exceptions.translation import TranslationException
-from mumen.exceptions.validation import ValidationException
+
+logging.basicConfig(format='%(levelname)s - %(message)s',
+                    level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 
 def __freedict_conf__(config, source_lang, target_lang):
@@ -77,26 +89,31 @@ def __translation__(config):
 
 def main():
     """Launch the MuMen application with the provided config file."""
-    logging.basicConfig(format='%(levelname)s - %(message)s',
-                        level=logging.DEBUG,
-                        stream=sys.stdout)
     parser = argparse.ArgumentParser(
-        description='Translate MEN and generate YACAB qeustions.')
+        description='Translate MEN and generate YACAB questions.')
     parser.add_argument(
         'config', metavar='config', type=str,
         help='YML configuration to load.')
-    logger = logging.getLogger(__name__)
-    logger.info("Welcome to MuMEN!")
+    logger.info('Welcome to MuMEN!')
     args = parser.parse_args()
     config_file = args.config
-    logger.info("Loading config: %s", config_file)
+    logger.info('Launching Nima with config: {}'.format(config_file))
+
     try:
-        logger.setLevel(logging.DEBUG)
-        config = validate_yml(load_yml(config_file))
-        if config['translation']:
-            __translation__(config['translation_step'])
-    except (ValidationException, TranslationException) as exc:
-        logger.error(exc)
+        lang_iso_code = futils.get_filename(config_file)
+        validator.validate_iso639_1_code(lang_iso_code)
+
+        with open(config_file, 'r') as config_stream:
+            config = yaml.safe_load(config_stream)
+            iconfig = ImmutableConfig(config)
+            if iconfig['translate']:
+                translator.translate_dataset(lang_iso_code,
+                                             iconfig['translation'])
+    except (ValidationError, InvalidParameterError, InvalidMethodError,
+            InvalidInputError) as err:
+        logger.error(err)
+        logger.error('Exiting MuMen')
+        sys.exit(1)  # exit with error code 1 when program errors
 
 
 if __name__ == "__main__":

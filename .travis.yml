@@ -10,6 +10,7 @@ addons:
 
 install:
   - python setup.py -q install
+  - pip install 'coverage>=4.0,<4.4'
   - pip install pylint pydocstyle pycodestyle pytest-cov codeclimate-test-reporter
 
 script:

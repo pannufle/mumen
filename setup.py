@@ -12,7 +12,7 @@ setup(
     description='A Python application to generate multilingual data for the MEN\
     dataset',
     author='Alexandre Kabbach',
-    author_email='akabbach@gmail.com',
+    author_email='akb@3azouz.net',
     # version=__import__('mumen').get_version(),
     version='0.1.0',
     url='https://github.com/akb89/mumen',

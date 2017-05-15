@@ -90,5 +90,5 @@ ENV/
 
 # Temproary files and directory
 .tmp
-data/freedict/dicts/*
-data/jmdict/dicts/*
+data/corpora
+data/dictionaries

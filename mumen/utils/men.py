@@ -1,12 +1,11 @@
-#! /usr/bin/python3
 """MEN Utilities.
 
-This module contains many utilities to load, creante and store MEN Files:
+This module contains many utilities to load, create and store MEN Files:
 https://staff.fnwi.uva.nl/e.bruni/MEN.
 """
 
 
-def parse_men_row(row):
+def decode(row):
     """Parse a MEN row.
 
     Args:
@@ -24,7 +23,7 @@ def parse_men_row(row):
     return (men_row[0], men_row[1], float(men_row[2]))
 
 
-def encode_men_row(entry):
+def encode(entry):
     """Encode an MEN entry to .
 
     Args:
@@ -36,48 +35,3 @@ def encode_men_row(entry):
     return '{} {} {}'.format(entry[0],
                              entry[1],
                              entry[2])
-
-
-def load(path):
-    """Load a MEN FILE.
-
-    Args:
-        path: path to the MEN file to load.
-
-    Returns
-    -------
-        the MEN Structure.
-
-    """
-    with open(path, "r") as men_file:
-        for men_row in men_file:
-            yield parse_men_row(men_row)
-
-
-def store(men, path):
-    """Store a MEN list to file.
-
-    Args:
-        param men: men list structure to save.
-        param path: path to the file where to store the MEN.
-    """
-    with open(path, "w") as men_file:
-        for entry in men:
-            men_file.write('{}\n'.format(encode_men_row(entry)))
-
-
-def men_pipeline(config):
-    """Exec MEN pipeline.
-
-    Args:
-        config: YML validate config.
-
-    Returns
-    -------
-        pairs of MEN words.
-
-    """
-    module = config['MEN']
-
-    path = module['source']
-    return load(path)
