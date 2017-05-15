@@ -1,68 +1,47 @@
-#! /usr/bin/python3
 """Module to translate a MEN file."""
-import operator
 import logging
-from collections import defaultdict
-from mumen.exceptions.translation import TranslationException
+import importlib
+
+import mumen.utils.constants as const
 
 
-class Translator:
-    """Class to manage multilingual, multidictionaries translation."""
+__all__ = ['translate_dataset']
 
-    def __init__(self, source_lang, target_lang, dictionaries):
-        """Initialize translator."""
-        self.__source__ = source_lang
-        self.__target__ = target_lang
-        self.__dictionaries__ = dictionaries
-
-    def translate(self, word):
-        """Translate a single word."""
-        translation = defaultdict(int)
-        for dic in self.__dictionaries__:
-            translated = dic.translate(word)
-            for trans in translated:
-                translation[trans] += translated[trans]
-        if not translation:
-            raise TranslationException(
-                "No translation for the word: {}".format(word))
-        sorted_trans = sorted(translation.items(),
-                              key=operator.itemgetter(1),
-                              reverse=True)
-        return sorted_trans[0][0]
-
-    def translate_pairs(self, word_a, word_b):
-        """Translate couple of words."""
-        return self.translate(word_a), self.translate(word_b)
-
-    def translate_men_pairs(self, men_pairs):
-        """Translate a list of couples of words."""
-        for (word_a, word_b, sim) in men_pairs:
-            trans_a, trans_b = self.translate_pairs(word_a, word_b)
-            yield (trans_a, trans_b, sim)
+logger = logging.getLogger(__name__)
 
 
-def translate(men_pairs, source_lang, target_lang, dictionaries):
-    """Translate MEN file pipeline.
+def _translate_entry(entry, source_lang_iso_1, target_lang_iso_1):
+    translator = importlib.import_module(
+        'mumen.translation.translators.{}_{}'.format(source_lang_iso_1,
+                                                     target_lang_iso_1))
+    return getattr(translator, 'translate')(entry)
 
-    This function permits to use one dictionary to translate a MEN file.
 
-    Args:
-        men_pairs: MEN File parsed.
-        source_lang: original lang
-        target_lang: target lang
-        dictionaries: list of enabled dictionaries
+def _translate_tuple(input_tuple, source_lang_iso_1, target_lang_iso_1):
+    return (_translate_entry(input_tuple[0], source_lang_iso_1,
+                             target_lang_iso_1),
+            _translate_entry(input_tuple[1], source_lang_iso_1,
+                             target_lang_iso_1))
 
-    Returns
-    -------
-        translated MEN file.
 
-    """
-    logger = logging.getLogger(__name__)
-    translator = Translator(source_lang, target_lang, dictionaries)
+def _translate_dataset(target_lang_iso_1, source_stream, config):
+    """Returns a list of tuples."""
+    trans_tuples = []
+    for line in source_stream:
+        tab_split = line.split(const.TAB)
+        trans_tuples.append(_translate_tuple((tab_split[0], tab_split[1]),
+                                             config['from'],
+                                             target_lang_iso_1))
+    return trans_tuples
 
-    for (word_a, word_b, sim) in men_pairs:
-        try:
-            trad_a, trad_b = translator.translate_pairs(word_a, word_b)
-            yield (trad_a, trad_b, sim)
-        except TranslationException as exc:
-            logger.warning(exc)
+
+def translate_dataset(lang_iso_code, config):
+    """Translate a whole MEN dataset from a source language to a target
+    language and print to file."""
+    with open(config['datasets']['source'], 'r') as source_stream,\
+         open(config['datasets']['target'], 'w') as target_stream:
+
+        print(const.NEW_LINE.join(_translate_dataset(lang_iso_code,
+                                                     source_stream,
+                                                     config)),
+              file=target_stream)

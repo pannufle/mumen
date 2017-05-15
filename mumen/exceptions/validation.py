@@ -1,18 +1,14 @@
-#! /usr/bin/python3
-"""Simple exception for validation process."""
+"""Simple exception for the validation process.
+
+Details
+"""
+
+__all__ = ['ValidationError']
 
 
-class ValidationException(Exception):
-    """Simple Exception for Mumen Config validation.
+class ValidationError(Exception):
+    """A specific exception for validation."""
 
-    It will be used to raise exception for wrong or incomplete config.
-    """
-
-    def __init__(self, msg):
-        """Inizialize validation error.
-
-        Args:
-            msg: error message as string.
-
-        """
-        Exception.__init__(self, msg)
+    def __init__(self, message):  # pylint:disable=W0235
+        """Init function."""
+        super().__init__(message)
