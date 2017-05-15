@@ -12,12 +12,12 @@ __all__ = ['get_translations']
 logger = logging.getLogger(__name__)
 
 
-def get_translations(word, pos, source_lang_iso_1, target_lang_iso_1):
+def get_translations(word, pos, target_lang_iso_1, config):
     """Get WordNet translations of word (with pos) from source to target
     language"""
     translations = []
     # TODO: Add validation for languages
-    source_lang_iso_2 = const.LANG_ISO_639_1_TO_2_DICT[source_lang_iso_1]
+    source_lang_iso_2 = const.LANG_ISO_639_1_TO_2_DICT[config['from']]
     target_lang_iso_2 = const.LANG_ISO_639_1_TO_2_DICT[target_lang_iso_1]
     synsets = wn.synsets(word, pos=pos, lang=source_lang_iso_2)
     for synset in synsets:
