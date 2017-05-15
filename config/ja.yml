@@ -13,7 +13,7 @@ translation:
       path: data/dictionaries/freedict
     jmdict:
       use: true
-      path: data/dictionaries/jmdict
+      path: data/dictionaries/jmdict/jmdict.xml
     wordnet:
       use: true
     frequency_tables:
