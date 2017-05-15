@@ -6,6 +6,16 @@ XML_FILE_EXTENSION = '.xml'
 NEW_LINE = '\n'  # replace by os.linesep?
 TAB = '\t'
 
+HYPHEN = '-'
+
+ENGLISH_ISO_1 = 'en'
+
+LANG_ISO_639_1_TO_2_DICT = {
+    'ar': 'ara',
+    'en': 'eng',
+    'ja': 'jpn'
+}
+
 # ISO639-1 supported language codes
 ISO639_1 = {
     'ar': 'Arabic',
