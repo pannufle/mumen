@@ -1,34 +1,43 @@
-#! /usr/bin/python3
-"""Configuration Validator.
+"""Validation module for MuMen.
 
-Load a yml mumen configuration and validate it.
+Details
 """
-from mumen.exceptions.validation import ValidationException
+
+import logging
+
 import mumen.validation.validators.translation as translation
 import mumen.validation.validators.generation as generation
 import mumen.validation.validators.computation as computation
+import mumen.utils.constants as const
+from mumen.exceptions.validation import ValidationError
 
 
-def validate_yml(config):
-    """Validate yml Configuration.
+logger = logging.getLogger(__name__)
 
-    Read and yml file, check the settings and return a valid configuration.
+__all__ = ['validate_config', 'validate_iso639_1_code']
 
-    Args:
-        config: yml data structure.
 
-    Returns
-    -------
-        the validated yml data structure.
+def validate_iso639_1_code(lang_iso_code):
+    """Validate language ISO639-1 code."""
+    if len(lang_iso_code) != 2:
+        raise ValidationError('Configuration filename should contain 2'
+                              'characters referring to the parsed language'
+                              'ISO639-1 code')
+    if lang_iso_code not in const.ISO639_1:
+        raise ValidationError('Unsupported language code: {}'.format(
+            lang_iso_code))
 
-    """
+
+def validate_config(config):
+    """Validate config parameters."""
     try:
-        if config['translation']:
-            translation.validate(config['translation_step'])
-        if config['generation']:
-            generation.validate(config['generation_step'])
-        if config['computation']:
-            computation.validate(config['computation_step'])
-    except KeyError as exc:
-        raise ValidationException("Validation error: {}".format(exc))
-    return config
+        logger.info('Validating config parameters...')
+        if config['translate']:
+            translation.validate(config['translation'])
+        if config['generate']:
+            generation.validate(config['generation'])
+        if config['compute']:
+            computation.validate(config['computation'])
+        logger.info('All config parameters are valid')
+    except ValidationError:
+        raise
