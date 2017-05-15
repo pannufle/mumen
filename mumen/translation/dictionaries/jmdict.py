@@ -1,38 +1,36 @@
 """Simple wrapper for JMDict."""
-from collections import defaultdict
+import logging
 import lxml.etree as etree
-from mumen.translation.dictionaries.base_dict import BaseDict
+import mumen.utils.constants as const
 
 
-class JMDict(BaseDict):
-    """Load JMdict dictionaries and use it to translate words."""
+__all__ = ['get_translations']
 
-    def __init__(self, file_path, source_lang, target_lang):
-        """Initialize JMDict dictionary.
+logger = logging.getLogger(__name__)
 
-        Japanese and English are the only supported source/target
-        languages for now.
-        """
-        BaseDict.__init__(self, source_lang, target_lang)
-        self.__tree__ = etree.parse(file_path)
+__tree__ = None
 
-    def translate(self, word):
-        """Translate word."""
-        translations = defaultdict(lambda: 0)  # replace lambda: 0 by int
-        if self.__source__ == 'eng':
-            trans = self.__tree__.xpath('.//gloss[text()="{}"]'.format(word))
-            for gloss in trans:
-                froms = gloss.getparent().getparent().find(".//reb").text
-                translations[froms] += 1
-        else:
-            trans = self.__tree__.xpath('.//keb[text()="{}"]'.format(word))
-            for keb in trans:
-                froms = keb.getparent().getparent().xpath(".//gloss")
-                for trans in froms:
-                    translations[trans.text] += 1
-            trans = self.__tree__.xpath('.//reb[text()="{}"]'.format(word))
-            for reb in trans:
-                froms = reb.getparent().getparent().xpath(".//gloss")
-                for trans in froms:
-                    translations[trans.text] += 1
-        return translations
+
+def get_translations(word, pos, target_lang_iso_1, config):
+    """Translate a given entry using JMDict."""
+    # TODO: include the part of speech
+    translations = []
+    if __tree__ is None:
+        __tree__ = etree.parse(config['path'])
+    if config['from'] == const.ENGLISH_ISO_1:
+        trans = __tree__.xpath('.//gloss[text()="{}"]'.format(word))
+        for gloss in trans:
+            forms = gloss.getparent().getparent().find(".//reb").text
+            translations.extend(forms)
+    else:
+        trans = __tree__.xpath('.//keb[text()="{}"]'.format(word))
+        for keb in trans:
+            forms = keb.getparent().getparent().xpath(".//gloss")
+            for trans in forms:
+                translations.extend(trans.text)
+        trans = __tree__.xpath('.//reb[text()="{}"]'.format(word))
+        for reb in trans:
+            forms = reb.getparent().getparent().xpath(".//gloss")
+            for trans in forms:
+                translations.extend(trans.text)
+    return translations
