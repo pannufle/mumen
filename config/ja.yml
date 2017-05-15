@@ -1,0 +1,25 @@
+translate: true
+generate: false
+compute: false
+
+translation:
+  from: en
+  datasets:
+    source: data/en/MEN/MEN_dataset_lemma_form_full
+    target: data/ja/MEN/MEN_dataset_lemma_form_full_ja_raw
+  dictionaries:
+    freedict:
+      use: true
+      path: data/dictionaries/freedict
+    jmdict:
+      use: true
+      path: data/dictionaries/jmdict
+    wordnet:
+      use: true
+    frequency_tables:
+      use: false
+      source: data/frequency_tables/en.txt
+      target: data/ferquency_tables/ja.txt
+    alignment_tables:
+      use: false
+      path: data/alignment_tables/en_ja.txt
