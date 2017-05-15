@@ -90,6 +90,9 @@ The [Microsoft Arabic NLP Toolkit](https://www.microsoft.com/en-us/research/proj
 * A speller
 * A transliterator
 
+[Arabic normalizer](http://alt.qcri.org/tools/arabic-normalizer/)
+See also [TED Talks datasets](https://wit3.fbk.eu/)
+
 In terms of corpora, if Wikipedia is not enough we could use the [Gigaword corpus](https://catalog.ldc.upenn.edu/LDC2003T12). Apparently it contains
 nearly 400 million words.
 
