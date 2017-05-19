@@ -6,13 +6,14 @@ translation:
   from: en
   datasets:
     source: data/en/MEN/MEN_dataset_lemma_form_full
-    target: data/ja/MEN/MEN_dataset_lemma_form_full_ja_raw
+    #target: data/ja/MEN/MEN_dataset_lemma_form_full_ja_raw
+    target: /Users/AKB/GitHub/mumen/data/ja/MEN/MEN_dataset_lemma_form_full_ja_raw
   dictionaries:
     freedict:
-      use: true
+      use: false
       path: data/dictionaries/freedict
     jmdict:
-      use: true
+      use: false
       path: data/dictionaries/jmdict/jmdict.xml
     wordnet:
       use: true
