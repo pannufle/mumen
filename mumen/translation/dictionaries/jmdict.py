@@ -20,17 +20,17 @@ def get_translations(word, pos, target_lang_iso_1, config):
     if config['from'] == const.ENGLISH_ISO_1:
         trans = __tree__.xpath('.//gloss[text()="{}"]'.format(word))
         for gloss in trans:
-            forms = gloss.getparent().getparent().find(".//reb").text
+            forms = gloss.getparent().getparent().find('.//reb').text
             translations.extend(forms)
     else:
         trans = __tree__.xpath('.//keb[text()="{}"]'.format(word))
         for keb in trans:
-            forms = keb.getparent().getparent().xpath(".//gloss")
+            forms = keb.getparent().getparent().xpath('.//gloss')
             for trans in forms:
                 translations.extend(trans.text)
         trans = __tree__.xpath('.//reb[text()="{}"]'.format(word))
         for reb in trans:
-            forms = reb.getparent().getparent().xpath(".//gloss")
+            forms = reb.getparent().getparent().xpath('.//gloss')
             for trans in forms:
                 translations.extend(trans.text)
     return translations
