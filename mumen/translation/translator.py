@@ -71,15 +71,17 @@ def _get_recall_metrics(mentries):
 def translate_dataset(target_lang_iso_1, config):
     """Translate a whole MEN dataset from a source language to a target
     language and print to file."""
-    logger.debug('Translating dataset: {}'.format(config['datasets']['source']))
+    logger.debug('Translating dataset: {}'.format(
+        config['datasets']['source']))
     logger.debug('  from: {}'.format(config['from']))
     logger.debug('  to: {}'.format(target_lang_iso_1))
     os.makedirs(os.path.dirname(config['datasets']['target']),
                 exist_ok=True)
     with open(config['datasets']['source'], 'r')as source_stream,\
-         open(config['datasets']['target'], 'w') as target_stream:
+            open(config['datasets']['target'], 'w') as target_stream:
 
-        logger.debug('Saving translations to output file: {} '.format(target_stream))
+        logger.debug(
+            'Saving translations to output file: {} '.format(target_stream))
         translated_mentries = _translate_dataset(source_stream,
                                                  target_lang_iso_1,
                                                  config)
@@ -88,9 +90,12 @@ def translate_dataset(target_lang_iso_1, config):
                                                            coverage[1]))
 
         num_errors = _get_accuracy_metrics(translated_mentries)
-        logger.info('{} errors out of {} entries'.format(num_errors, len(translated_mentries)))
+        logger.info(
+            '{} errors out of {} entries'.format(num_errors,
+                                                 len(translated_mentries)))
 
-        accuracy = ((len(translated_mentries) - num_errors) / len(translated_mentries)) * 100
+        accuracy = ((len(translated_mentries) - num_errors) /
+                    len(translated_mentries)) * 100
         recall = (coverage[0] / coverage[1]) * 100
         f1_score = ((accuracy * recall) / (accuracy + recall)) * 2
 
