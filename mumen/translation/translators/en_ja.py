@@ -17,12 +17,12 @@ def _get_first_element(translation_set):
 
 
 def _translate_lemma(lemma, target_lang_iso_1, config):
-    translations = defaultdict(list)
+    translations = defaultdict(set)
     for dict_name, dict_config in config['dictionaries'].items():
         if dict_config['use']:
             dictionary = importlib.import_module(
                 'mumen.translation.dictionaries.{}'.format(dict_name))
-            translations[dictionary].extend(
+            translations[dictionary].update(
                 getattr(dictionary, 'get_translations')(lemma,
                                                         target_lang_iso_1,
                                                         config))
@@ -33,6 +33,6 @@ def translate(entry, target_lang_iso_1, config):
     """Translate the entry from English to Japanese"""
     # TODO: detect whether entry is word or lemma (with pos)
     translations_dict = _translate_lemma(entry, target_lang_iso_1, config)
-    intersect = reduce(set.intersection, (set(val) for val in translations_dict.values()))
+    intersect = reduce(set.intersection, (val for val in translations_dict.values()))
     logger.debug('Intersection = {}'.format(intersect))
     return _get_first_element(intersect)
