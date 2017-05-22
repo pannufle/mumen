@@ -25,11 +25,6 @@ def _extract_english_tokens(entry):
 
 
 def _extract_japanese_tokens(entry):
-    """The k_ele stands for the kanji-based element.
-    r_ele is the reading (in furigana).
-    If the word is written in furigana,
-    r_ele is the defining element. Otherwise it is k_ele
-    """
     tokens = set()
     k_eles = entry.findall('k_ele')
     if not k_eles:
