@@ -45,10 +45,11 @@ pip3 install nltk
 
 ### Simple Usage
 ```
->>> import goslate
->>> gs = goslate.Goslate()
->>> print(gs.translate('hello world', 'de'))
-hallo welt
+from nltk.translate import AlignedSent, Alignment
+
+algnsent = AlignedSent(['klein', 'ist', 'das', 'Haus'],  # you need parralle
+                       ['the', 'house', 'is', 'small'],  # corpora
+                       Alignment.fromstring('0-2 1-3 2-1 3-0'))
 ```
 
 ### Advantages
