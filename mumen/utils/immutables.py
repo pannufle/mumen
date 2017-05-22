@@ -1,7 +1,7 @@
 """Custom immutable objects."""
 
-from nima.exceptions.method import InvalidMethodError
-from nima.exceptions.parameter import InvalidParameterError
+from mumen.exceptions.method import InvalidMethodError
+from mumen.exceptions.parameter import InvalidParameterError
 
 __all__ = ['FrozenDict', 'ImmutableConfig']
 
@@ -34,7 +34,7 @@ class ImmutableConfig(FrozenDict):
         return input_value
 
     def _freeze(self, config):
-        """Converts all dicts in config to FrozenDicts."""
+        """Convert all dicts in config to FrozenDicts."""
         frozen_config = {}
         for key, value in config.items():
             frozen_config[key] = self._get_frozen_value(value)
