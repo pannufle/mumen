@@ -30,7 +30,7 @@ def _translate_lemma(lemma, target_lang_iso_1, config):
 
 
 def translate(entry, target_lang_iso_1, config):
-    """Translate the entry from English to Japanese"""
+    """Translate the entry from English to Japanese."""
     # TODO: detect whether entry is word or lemma (with pos)
     translations_dict = _translate_lemma(entry, target_lang_iso_1, config)
     intersect = reduce(set.intersection, (
