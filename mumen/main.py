@@ -19,7 +19,7 @@ from mumen.utils.immutables import ImmutableConfig
 
 
 logging.basicConfig(format='%(levelname)s - %(message)s',
-                    level=logging.INFO)
+                    level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
@@ -41,6 +41,7 @@ def main():
 
         with open(config_file, 'r') as config_stream:
             config = yaml.safe_load(config_stream)
+            logger.debug(config)
             iconfig = ImmutableConfig(config)
             if iconfig['translate']:
                 translator.translate_dataset(lang_iso_code,
