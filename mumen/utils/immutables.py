@@ -20,6 +20,7 @@ class ImmutableConfig(FrozenDict):
     """
 
     def __init__(self, config):
+        """Initialize an ImmutableConfig."""
         if not isinstance(config, dict):
             raise InvalidParameterError(
                 'ImmutableConfig requires instance of dict as input parameter')
