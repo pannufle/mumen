@@ -18,7 +18,8 @@ def _extract_english_tokens(entry):
         glosses = sense.findall('gloss')
         for gloss in glosses:
             # If it is the English gloss
-            if gloss.get('{http://www.w3.org/XML/1998/namespace}lang') == 'eng':
+            if gloss.get(
+                    '{http://www.w3.org/XML/1998/namespace}lang') == 'eng':
                 tokens.add(gloss.text)
     return tokens
 
