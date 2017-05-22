@@ -10,6 +10,7 @@ class FrozenDict(dict):
     """Immutable dict following the frozenset semantics."""
 
     def __setitem__(self, key, value):
+        """Raise an arror of assignement."""
         raise InvalidMethodError('Cannot assign value to a FrozenDict')
 
 
