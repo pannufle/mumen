@@ -17,13 +17,17 @@ def _extract_english_tokens(entry):
     for sense in entry.findall('sense'):
         glosses = sense.findall('gloss')
         for gloss in glosses:
-            if gloss.get('{http://www.w3.org/XML/1998/namespace}lang') == 'eng':  # If it is the English gloss
+            # If it is the English gloss
+            if gloss.get('{http://www.w3.org/XML/1998/namespace}lang') == 'eng':
                 tokens.add(gloss.text)
     return tokens
 
 
 def _extract_japanese_tokens(entry):
-    """The k_ele stands for the kanji-based element. r_ele is the reading (in furigana). If the word is written in furigana, r_ele is the defining element. Otherwise it is k_ele
+    """The k_ele stands for the kanji-based element.
+    r_ele is the reading (in furigana).
+    If the word is written in furigana,
+    r_ele is the defining element. Otherwise it is k_ele
     """
     tokens = set()
     k_eles = entry.findall('k_ele')
@@ -84,10 +88,10 @@ def get_translations(lemma, target_lang_iso_1, config):
     word = partition[0]
     pos = partition[2]
     logger.debug('Converting {}-{} to JMDict entry...'.format(word, pos))
-    #for key, value in jmdict.items():
-        #print('Key = {} Value = {}'.format(key, value))
+    # for key, value in jmdict.items():
+    # print('Key = {} Value = {}'.format(key, value))
     jmd_lemmas = {(word, jmdict_pos) for jmdict_pos in const.MEN2JM_POS[pos]}
-    #logger.debug('  JMDict entries: {}'.format(lemmas))
+    # logger.debug('  JMDict entries: {}'.format(lemmas))
     translations = set()
     for jmd_lemma in jmd_lemmas:
         for translation in jmdict[jmd_lemma]:
@@ -98,15 +102,16 @@ def get_translations(lemma, target_lang_iso_1, config):
 if __name__ == '__main__':
     logging.basicConfig(format='%(levelname)s - %(message)s',
                         level=logging.DEBUG)
-    config = {
+    __config__ = {
         'from': 'en',
         'dictionaries': {
             'jmdict': {
                 'use': True,
-                'path': '/Users/AKB/GitHub/mumen/data/dictionaries/jmdict/jmdict.xml'
+                'path':
+                '/Users/AKB/GitHub/mumen/data/dictionaries/jmdict/jmdict.xml'
             }
         }
     }
-    print(get_translations('scalar-n', 'ja', config))
-    print(get_translations('sweatshirt-n', 'ja', config))
-    print(get_translations('joint-n', 'ja', config))
+    print(get_translations('scalar-n', 'ja', __config__))
+    print(get_translations('sweatshirt-n', 'ja', __config__))
+    print(get_translations('joint-n', 'ja', __config__))
