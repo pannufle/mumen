@@ -12,14 +12,13 @@ logger = logging.getLogger(__name__)
 # TEI namespaces
 TEI_NS = {'n': 'http://www.tei-c.org/ns/1.0'}
 
-    def __init__(self, dictionary_path, source_lang, target_lang):
-        """Initialize FreeDict dictionary."""
-        BaseDict.__init__(self, source_lang, target_lang)
-        self.__tree__ = etree.parse(dictionary_path)
-        self.__direct__ = '{}-{}'.format(
-            source_lang.to_3_lang_id(),
-            target_lang.to_3_lang_id()) in dictionary_path
 
+def _load(dictionary_path, source_lang, target_lang):
+    """Initialize FreeDict dictionary."""
+    __tree__ = etree.parse(dictionary_path)
+    __direct__ = '{}-{}'.format(
+        source_lang.to_3_lang_id(),
+        target_lang.to_3_lang_id()) in dictionary_path
 
 
 def get_translations(word, pos, target_lang_iso_1, config):
