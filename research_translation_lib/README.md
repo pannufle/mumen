@@ -60,3 +60,7 @@ algnsent = AlignedSent(['klein', 'ist', 'das', 'Haus'],  # you need parralle
 
 #### More information:
 http://www.nltk.org/api/nltk.translate.html
+
+
+## py-translate
+https://pypi.python.org/pypi/py-translate
