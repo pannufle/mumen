@@ -103,7 +103,10 @@ MEN2JM_POS = {
 
 _MEN2JM_POS = {
     'n': ['n', 'n-adv', 'n-pref', 'n-suf', 'n-t'],
-    'v': ['v1', 'v2a-s', 'v4h', 'v4r', 'v5', 'v5aru', 'v5b', 'v5g', 'v5k', 'v5k-s', 'v5m', 'v5n', 'v5r', 'v5r-i', 'v5s', 'v5t', 'v5u', 'v5u-s', 'v5uru', 'v5z', 'vz', 'vi', 'vk', 'vn', 'vs', 'vs-c', 'vs-i', 'vs-s', 'vt'],
+    'v': ['v1', 'v2a-s', 'v4h', 'v4r', 'v5', 'v5aru', 'v5b', 'v5g', 'v5k',
+          'v5k-s', 'v5m', 'v5n', 'v5r', 'v5r-i', 'v5s', 'v5t', 'v5u', 'v5u-s',
+          'v5uru', 'v5z', 'vz', 'vi', 'vk', 'vn', 'vs', 'vs-c', 'vs-i', 'vs-s',
+          'vt'],
     'j': ['adj-i', 'adj-na', 'adj-no', 'adj-pn', 'adj-t', 'adj-f', 'adj']
 }
 
