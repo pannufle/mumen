@@ -69,8 +69,9 @@ def _get_recall_metrics(mentries):
 
 
 def translate_dataset(target_lang_iso_1, config):
-    """Translate a whole MEN dataset from a source language to a target
-    language and print to file."""
+    """Translate a whole MEN dataset from a source language to a target language
+    and print to file.
+    """
     logger.debug('Translating dataset: {}'.format(
         config['datasets']['source']))
     logger.debug('  from: {}'.format(config['from']))
