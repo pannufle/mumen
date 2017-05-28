@@ -3,9 +3,6 @@
 import logging
 # from mumen.marshalling.models import jmdict
 
-"""
-TODO Create a marshaller jmdict which pass the build
-"""
 
 __all__ = ['unmarshall']
 
