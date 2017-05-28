@@ -122,6 +122,7 @@ morphological annotation.
 - Repair this wrapper of FreeDict
 - Create a marshaller jmdict which pass the build
 - Do all the tests (for pytest)
+- Do tests for translator (mumen.translatation.translator)
 
 
 ## Evaluation template
