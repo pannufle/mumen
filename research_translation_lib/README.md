@@ -63,4 +63,35 @@ http://www.nltk.org/api/nltk.translate.html
 
 
 ## py-translate
+
+use a nltk model to find the probability of the best alignement
+
+
+### Installation
+
+```
+pip3 install py-translate
+```
+
+### Simple Usage
+```
+translate [--flags] [source] dest
+```
+
+### Example
+```
+# Translate Hello from French to English
+$ translate fr en <<< 'Bonjour, comment allez-vous!
+```
+
+### Advantages
++ Have a huge choice of languages
++ Easy to use, just on a sentence or a file
++ Have a great documentation
+
+### Disadvantage
++ Must be use with bash
++ Don't give us probabilities
+
+#### More information:
 https://pypi.python.org/pypi/py-translate
