@@ -115,6 +115,37 @@ balanced corpus of contemporary written Japanese
 100 million words (I have a copy of the corpus) but with extensive
 morphological annotation.
 
+### Progress
+- Remove most of the error of the linter
+
+### ToDo:
+- Repair this wrapper of FreeDict
+- Create a marshaller jmdict which pass the build
+- Do all the tests (for pytest)
+
+
+## Evaluation template
+| Standard                                | YES |  NO |
+| --------------------------------------- | :-: | :-: |
+| Does the app build correctly           |     |     |
+| Is the test coverage 100%           |     |     |
+| Is the codeclimate metric equal to 4    |     |     |
+| Does the README include clear instructions on how to run the app          |     |     |
+| Do those instructions work          |     |     |
+| Is the pipeline of the application documented          |     |     |
+| Is it documented in a diagram         | | |
+| Does the architecture of the application match the documented pipeline    | | |
+| Is the team progress clearly documented in the README (with a list of completed tasks and remaining todos)        | | |
+| Is the list of todos comprehensive       | | |
+| Is the architecture scalable (can additionnal modules, languages, utils be added without breaking the app)        | | |
+| Are architectural choices consistent across the app       | | |
+| Is the config fully externalized        | | |
+| Is the setup.py fully configured for modularization with PyPy        | | |
+| Are all good practices respected        | | |
+| Do docstrings fully respect Google and pydocstyle v2.0.0 standards for export to Sphinx       | | |
+| Does the application use loggers       | | |
+
+
 [release-image]:https://img.shields.io/github/release/akb89/mumen.svg?style=flat-square
 [release-url]:https://github.com/akb89/mumen/releases/latest
 [travis-image]:https://img.shields.io/travis/akb89/mumen.svg?style=flat-square
