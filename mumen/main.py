@@ -33,7 +33,7 @@ def main():
     logger.info('Welcome to MuMEN!')
     args = parser.parse_args()
     config_file = args.config
-    logger.info('Launching Nima with config: {}'.format(config_file))
+    logger.info('Launching Mumen with config: {}'.format(config_file))
 
     try:
         lang_iso_code = futils.get_filename(config_file)
