@@ -3,11 +3,6 @@ import logging
 # import lxml.etree as etree
 # import mumen.utils.constants as const
 
-"""
-TODO: Repair this wrapper
-"""
-
-
 # __all__ = ['get_translations']
 
 logger = logging.getLogger(__name__)
