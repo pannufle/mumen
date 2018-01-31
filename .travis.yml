@@ -10,6 +10,8 @@ addons:
 
 install:
   - python setup.py -q install
+  - pip install 'coverage>=4.0,<4.4'
+
   - pip install pylint pydocstyle pycodestyle pytest-cov codeclimate-test-reporter
 
 script:
@@ -18,7 +20,7 @@ script:
   - pycodestyle mumen
   - pycodestyle tests
   - pylint --rcfile .pylintrc mumen
-  - py.test --cov=tests/
+  - python -m pytest --cov=tests/ tests/
 
 after_success:
   - env CODECLIMATE_REPO_TOKEN=abf6287697a5aa45a9f71aeacde5320efc6d02ea0afb22b3d021407322ce5385 codeclimate-test-reporter
