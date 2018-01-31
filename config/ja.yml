@@ -5,17 +5,18 @@ compute: false
 translation:
   from: en
   datasets:
-    source: data/en/MEN/MEN_dataset_lemma_form_full
-    target: data/ja/MEN/MEN_dataset_lemma_form_full_ja_raw
+    source: /Users/AKB/GitHub/mumen/data/en/MEN/MEN_dataset_lemma_form_full
+    #target: data/ja/MEN/MEN_dataset_lemma_form_full_ja_raw
+    target: /Users/AKB/GitHub/mumen/data/ja/MEN/MEN_dataset_lemma_form_full_ja_raw
   dictionaries:
     freedict:
-      use: true
+      use: false
       path: data/dictionaries/freedict
     jmdict:
       use: true
-      path: data/dictionaries/jmdict/jmdict.xml
+      path: /Users/AKB/GitHub/mumen/data/dictionaries/jmdict/jmdict.xml
     wordnet:
-      use: true
+      use: false
     frequency_tables:
       use: false
       source: data/frequency_tables/en.txt

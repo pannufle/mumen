@@ -1,7 +1,7 @@
 """Custom immutable objects."""
 
-from nima.exceptions.method import InvalidMethodError
-from nima.exceptions.parameter import InvalidParameterError
+from mumen.exceptions.method import InvalidMethodError
+from mumen.exceptions.parameter import InvalidParameterError
 
 __all__ = ['FrozenDict', 'ImmutableConfig']
 
@@ -10,6 +10,7 @@ class FrozenDict(dict):
     """Immutable dict following the frozenset semantics."""
 
     def __setitem__(self, key, value):
+        """Raise an arror of assignement."""
         raise InvalidMethodError('Cannot assign value to a FrozenDict')
 
 
@@ -20,6 +21,7 @@ class ImmutableConfig(FrozenDict):
     """
 
     def __init__(self, config):
+        """Initialize an ImmutableConfig."""
         if not isinstance(config, dict):
             raise InvalidParameterError(
                 'ImmutableConfig requires instance of dict as input parameter')
@@ -34,7 +36,7 @@ class ImmutableConfig(FrozenDict):
         return input_value
 
     def _freeze(self, config):
-        """Converts all dicts in config to FrozenDicts."""
+        """Convert all dicts in config to FrozenDicts."""
         frozen_config = {}
         for key, value in config.items():
             frozen_config[key] = self._get_frozen_value(value)

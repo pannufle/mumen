@@ -5,9 +5,6 @@ Details
 
 import logging
 
-import mumen.validation.validators.translation as translation
-import mumen.validation.validators.generation as generation
-import mumen.validation.validators.computation as computation
 import mumen.utils.constants as const
 from mumen.exceptions.validation import ValidationError
 
@@ -33,11 +30,14 @@ def validate_config(config):
     try:
         logger.info('Validating config parameters...')
         if config['translate']:
-            translation.validate(config['translation'])
+            # translation.validate(config['translation'])
+            pass
         if config['generate']:
-            generation.validate(config['generation'])
+            # generation.validate(config['generation'])
+            pass
         if config['compute']:
-            computation.validate(config['computation'])
+            # computation.validate(config['computation'])
+            pass
         logger.info('All config parameters are valid')
     except ValidationError:
         raise
