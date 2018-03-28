@@ -1,10 +1,7 @@
 # MuMEN
-
-[![GitHub release][release-image]][release-url]
 [![Build][travis-image]][travis-url]
-[![Dependencies][requires-image]][requires-url]
+[![Requirements Status][req-image]][req-url]
 [![Code Coverage][coverage-image]][coverage-url]
-[![Code Quality][quality-image]][quality-url]
 [![MIT License][license-image]][license-url]
 
 ## Specifications
@@ -147,15 +144,11 @@ morphological annotation.
 | Does the application use loggers       | | |
 
 
-[release-image]:https://img.shields.io/github/release/akb89/mumen.svg?style=flat-square
-[release-url]:https://github.com/akb89/mumen/releases/latest
 [travis-image]:https://img.shields.io/travis/akb89/mumen.svg?style=flat-square
 [travis-url]:https://travis-ci.org/akb89/mumen
-[coverage-image]:https://img.shields.io/codeclimate/coverage/github/akb89/mumen.svg?style=flat-square
-[coverage-url]:https://codeclimate.com/github/akb89/mumen/coverage
-[quality-image]:https://img.shields.io/codeclimate/github/akb89/mumen.svg?style=flat-square
-[quality-url]:https://codeclimate.com/github/akb89/mumen
+[coverage-image]:https://img.shields.io/coveralls/akb89/mumen/master.svg?style=flat-square
+[coverage-url]:https://coveralls.io/github/akb89/mumen?branch=master
 [license-image]:http://img.shields.io/badge/license-MIT-000000.svg?style=flat-square
 [license-url]:LICENSE.txt
-[requires-url]: https://requires.io/github/akb89/mumen/requirements
-[requires-image]: https://img.shields.io/requires/github/akb89/mumen.svg?style=flat-square
+[req-url]:https://requires.io/github/akb89/mumen/requirements/?branch=master
+[req-image]:https://img.shields.io/requires/github/akb89/mumen.svg?style=flat-square

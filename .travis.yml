@@ -1,26 +1,19 @@
 language: python
 python:
-  - "3.4"
   - "3.5"
   - "3.6"
 
-addons:
-  code_climate:
-    repo_token: abf6287697a5aa45a9f71aeacde5320efc6d02ea0afb22b3d021407322ce5385
-
 install:
   - python setup.py -q install
-  - pip install 'coverage>=4.0,<4.4'
-
-  - pip install pylint pydocstyle pycodestyle pytest-cov codeclimate-test-reporter
+  - pip install pytest==3.4.1 pylint==1.8.2 pydocstyle==2.1.1 pycodestyle==2.3.1 pytest-cov==2.5.1 coveralls
 
 script:
+  - python -m pytest --cov=mumen tests/
   - pydocstyle mumen
   - pydocstyle tests
   - pycodestyle mumen
   - pycodestyle tests
   - pylint --rcfile .pylintrc mumen
-  - python -m pytest --cov=tests/ tests/
 
 after_success:
-  - env CODECLIMATE_REPO_TOKEN=abf6287697a5aa45a9f71aeacde5320efc6d02ea0afb22b3d021407322ce5385 codeclimate-test-reporter
+  - coveralls
